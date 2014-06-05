@@ -1,0 +1,12 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Thesis.aux
+A level-1 auxiliary file: Chapter1.aux
+A level-1 auxiliary file: Appendix1.aux
+The style file: alpha.bst
+I found no \citation commands---while reading file Thesis.aux
+Database file #1: References.bib
+I was expecting a `,' or a `}'---line 342 of file References.bib
+ :    
+ :    year            = {2009},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+(There were 2 error messages)
