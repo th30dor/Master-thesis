@@ -1,26 +1,46 @@
 \chapter{Introduction}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin metus nunc, viverra ac, gravida 
-posuere, lobortis id, felis. Duis magna tortor, interdum porta, dignissim et, sollicitudin vitae, 
-neque. Quisque placerat leo sit amet est. Donec sagittis metus in purus. Duis vehicula arcu in 
-nisi. Suspendisse laoreet. Vivamus suscipit dui ullamcorper turpis. Fusce in neque. Duis malesuada 
-dolor eu orci. Sed ornare, sem in consequat accumsan, tellus ligula ultrices purus, at feugiat 
-lectus risus vel libero. Etiam lobortis. Proin adipiscing dolor in elit. Nam velit felis, 
-adipiscing in, volutpat nec, fermentum a, massa. Praesent felis tortor, cursus nec, convallis ac, 
-ornare vel, augue. Donec lacus neque, volutpat nec, ullamcorper quis, porta id, erat.
-
-Nulla molestie magna ut nulla. Sed pulvinar. Ut tincidunt laoreet odio. In nibh. Morbi ornare laoreet diam. Ut accumsan, mi eget scelerisque sollicitudin, urna nisi rutrum velit, et iaculis orci velit id lorem. Maecenas urna velit, egestas eget, scelerisque sed, dapibus eget, risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent tincidunt, nisl quis sollicitudin congue, justo erat tempor pede, sit amet eleifend diam massa vel diam. Nullam ornare volutpat urna. Morbi condimentum. Etiam scelerisque purus sit amet nulla. Vivamus luctus metus sit amet enim. Proin tincidunt enim non eros. Donec aliquet adipiscing risus. Suspendisse justo libero, consectetur sed, dictum id, viverra vel, pede. Aenean pretium nulla eget est. In sed nunc. Sed semper dui eu eros.
-
-Integer mi. Vestibulum nec ipsum. Duis a mi vitae lacus elementum tempor. Vestibulum blandit sollicitudin erat. Quisque nec libero vitae turpis luctus cursus. In at diam. Morbi et massa. Mauris a erat. Cras blandit. Nullam nisi. Praesent gravida blandit arcu. Vivamus ornare, quam at pharetra placerat, libero augue laoreet purus, vel fringilla felis lacus consequat velit. Pellentesque malesuada. Ut velit tellus, ullamcorper in, scelerisque et, consectetur et, ipsum. Nulla elit. Proin tempor. Vivamus dapibus nisl lacinia tellus mollis venenatis. Aliquam porttitor ligula ac dolor.
-
-Aenean placerat mi eget odio. Etiam malesuada. Nam id neque. Vestibulum et nisi. Vestibulum sem enim, porttitor a, mollis quis, molestie eget, leo. Pellentesque vitae sapien in magna mollis fermentum. In eu tortor. In hac habitasse platea dictumst. Vivamus magna lacus, malesuada et, egestas eget, rhoncus et, massa. Nullam pellentesque massa. Proin non lorem eget lorem mollis volutpat. Integer pulvinar. Nulla facilisi. Cras quam.
-
-Integer tristique eros in nulla. Vestibulum massa neque, venenatis at, consequat sed, volutpat in, 
-sem. Duis faucibus lorem vitae purus. Phasellus justo nunc, iaculis non, varius vel, pharetra a, 
-neque. Nulla bibendum scelerisque lorem. Pellentesque viverra. Proin eu arcu. Mauris vitae massa. 
-Phasellus dictum enim tempus lectus. Quisque interdum.
-
 \section{Motivation}
-\section{Scope}
+
+Epidemiology \cite{human_sex}, personal health issues \cite{Madan}, group discovery \cite{5591535}, human mobility \cite{Sun2011929,sevtsuk}, efficient team creation \cite{ECTA, Pentland}, the analysis of academic success \cite{academics}, network theory \cite{networks}, also Fig. \ref{pic:dynamicsf2f}, and psychological research \cite{Rachuri}; all of the above have begun making use of the same notion, one that is difficult to quantify \cite{quant, Wilson}: social connections and social interactions between individuals. And although co-location does not necessarily mean physical social interaction, it is a requirement for it. \cite{Eagle08092009}.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.35]{figures/dynamicsf2f.png}
+	\caption{Face-to-face interactions over a day for college students. Blue means a low, and red a high frequency of interactions. Image from \protect\cite{Stopczynski}}.
+	\label{pic:dynamicsf2f}
+
+\end{figure} 
+
+There are a number of approaches to determining co-location: self-reported data, a more traditional approach, which is prone to cognitive bias, social desirability bias and halo error \cite{Wuchty08092009,gonyea}. A more recent approach involves the use of data provided by modern means of communication, namely mobile phones. This data can come from both the actual phone, in the form of GPS locations or bluetooth readings \cite{Stopczynski}, as well as from the phone company itself in the form of anonymous cell tower records \cite{Onnela01052007, hovel}. This has the advantage of being applicable almost anywhere, because of the high percentage of mobile phone penetration (95.5\% estimated by the International Telecommunication Union in May 2014). 
+However, there are approaches that yield better results, but come with financial, environmental or other types of additional cost: RFID tags \cite{catt}, audio-video recordings \cite{audiovideo}, on-body sensors \cite{onbody} and wifi signals \cite{wifi}, just to name a few. 
+ 
+ 
 \section{Objective}
+
+Given a bluetooth RSSI between two phones, the purpose of this paper is to indicate a method which reliably and accurately determines the existence of pairwise co-location between the people carrying the two phones.
+
+Reliability refers to the fact that multiple tries with the same input, and constant settings ( same machine learning algorithm, same parameters and same training data), will always yield exactly the same result. While accuracy refers to the precision of the algorithm during cross-validation testing, or how close to 100\% it is. 
+ 
+This inference is achieved by applying and analysing multiple machine learning algorithms on a data set consisting of two main parts:
+\begin{itemize}
+  \item Data automatically recorded by the SensibleDTU data collector app \cite{Stopczynski}
+  \item Ground truth data obtained by the test subjects by interacting with the FriendFinder app
+\end{itemize}
+
+For each machine learning algorithm the parameter configuration which yields the best results will be chosen, followed by a comparison between the best configurations for each algorithm.      
+
+\section{Scope and limitations}
+
+The paper analyses the data obtained from three test subjects. Each subject has been given the same phone model, Samsung Galaxy Nexus.
+
+While considerable testing has been done with regards to the algorithm parameters, the machine learning algorithms list is by no means exhaustive. There are three main algorithms: Naive Bayes, Neural Networks, and Recursive learning, and an explanation on why a fourth, Hidden Markov Model, is unsuitable for this type of data. 
+
+When analysing data, we only look at the bluetooth RSSI value, and data derived directly while measuring it. For example, given that measurements are taken every five minutes, we at some point look at the length of an uninterrupted string of measurements, or at the measurements taken before and after (if possible) a specific measurement. GPS traces, phone records, infrared sensors, or facebook/email information are not taken into consideration.
+
 \section{Thesis Outline}
+
+The thesis begins with this introduction, which gives an overview of the general theme of the project. The objectives, scope and limitations and thesis outline are all self-defining. 
+
+It continues with a section which describes the data acquisition process and the methodology used to obtain the data from the SensibleDTU database. The section also describes the FriendFinder app, as well as its implementation.
+
+Next, the machine learning algorithms are presented. For each algorithm a theoretical overview is given. The implementation details are discussed, followed by the results obtained by applying it to the data. At the end of this chapter, we do a comparative analysis between the algorithms, followed by the last section, the conclusions, where we will give the final results and recommandations.

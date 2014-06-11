@@ -1,3 +1,114 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{10}
+
+\bibitem{human_sex}
+L.~A. N. A. H. E. S. Y.~b. Fredrik~Liljeros, Christofer R.~Edling, ``The web of
+  human sexual contacts,'' 2001.
+
+\bibitem{Madan}
+A.~Madan, S.~T. Moturu, D.~Lazer, and A.~S. Pentland, ``Social sensing:
+  Obesity, unhealthy eating and exercise in face-to-face networks,'' in {\em
+  Wireless Health 2010}, WH '10, (New York, NY, USA), pp.~104--110, ACM, 2010.
+
+\bibitem{5591535}
+S.~Mardenfeld, D.~Boston, S.~Pan, Q.~Jones, A.~Iamntichi, and C.~Borcea, ``Gdc:
+  Group discovery using co-location traces,'' in {\em Social Computing
+  (SocialCom), 2010 IEEE Second International Conference on}, pp.~641--648, Aug
+  2010.
+
+\bibitem{Sun2011929}
+J.~Sun, J.~Yuan, Y.~Wang, H.~Si, and X.~Shan, ``Exploring space–time
+  structure of human mobility in urban space,'' {\em Physica A: Statistical
+  Mechanics and its Applications}, vol.~390, no.~5, pp.~929 -- 942, 2011.
+
+\bibitem{sevtsuk}
+A.~Sevtsuk and C.~Ratti, ``Does urban mobility have a daily routine? learning
+  from the aggregate data of mobile networks,'' {\em Journal of Urban
+  Technology}, vol.~17, no.~1, pp.~41--60, 2010.
+
+\bibitem{ECTA}
+O.~Bandiera, I.~Barankay, and I.~Rasul, ``Social connections and incentives in
+  the workplace: Evidence from personnel data,'' {\em Econometrica}, vol.~77,
+  no.~4, pp.~1047--1094, 2009.
+
+\bibitem{academics}
+D.~Blansky, C.~Kavanaugh, C.~Boothroyd, B.~Benson, J.~Gallagher, J.~Endress,
+  and H.~Sayama, ``Spread of academic success in a high school social
+  network,'' {\em PLoS ONE}, vol.~8, p.~e55944, 02 2013.
+
+\bibitem{networks}
+Y.~ong-Y.~eol Ahn, J.~ames P.~.~Bagrow, and S.~une Lehmann, ``Link communities
+  reveal multiscale complexity in networks,'' vol.~- 466, no.~- 7307, pp.~-- --
+  764, - 2010/08/05/print.
+
+\bibitem{Rachuri}
+K.~K. Rachuri, M.~Musolesi, C.~Mascolo, P.~J. Rentfrow, C.~Longworth, and
+  A.~Aucinas, ``Emotionsense: A mobile phones based adaptive platform for
+  experimental social psychology research,'' in {\em Proceedings of the 12th
+  ACM International Conference on Ubiquitous Computing}, Ubicomp '10, (New
+  York, NY, USA), pp.~281--290, ACM, 2010.
+
+\bibitem{quant}
+G.~ergely Palla, A.~lbert-L.~aszlo Barabasi, and T.~amas Vicsek, ``-
+  {Quantifying} social group evolution,'' vol.~- 446, no.~- 7136, pp.~-- --
+  667, - 2007/04/05/print.
+
+\bibitem{Wilson}
+C.~Wilson, B.~Boe, A.~Sala, K.~P. Puttaswamy, and B.~Y. Zhao, ``User
+  interactions in social networks and their implications,'' in {\em Proceedings
+  of the 4th ACM European Conference on Computer Systems}, EuroSys '09, (New
+  York, NY, USA), pp.~205--218, ACM, 2009.
+
+\bibitem{Eagle08092009}
+N.~Eagle, A.~S. Pentland, and D.~Lazer, ``Inferring friendship network
+  structure by using mobile phone data,'' {\em Proceedings of the National
+  Academy of Sciences}, vol.~106, no.~36, pp.~15274--15278, 2009.
+
+\bibitem{Stopczynski}
+A.~Stopczynski, V.~Sekara, P.~Sapiezynski, A.~Cuttone, J.~E. Larsen, and
+  S.~Lehmann, ``Measuring large-scale social networks with high resolution.
+  working paper,'' {\em CoRR}, vol.~abs/1401.7233, 2014.
+
+\bibitem{Wuchty08092009}
+S.~Wuchty, ``What is a social tie?,'' {\em Proceedings of the National Academy
+  of Sciences}, vol.~106, no.~36, pp.~15099--15100, 2009.
+
+\bibitem{gonyea}
+R.~M. Gonyea, ``Self-reported data in institutional research: Review and
+  recommendations,'' {\em New Directions for Institutional Research},
+  vol.~2005, no.~127, pp.~73--89, 2005.
+
+\bibitem{Onnela01052007}
+J.-P. Onnela, J.~Saramäki, J.~Hyvönen, G.~Szabó, D.~Lazer, K.~Kaski,
+  J.~Kertész, and A.-L. Barabási, ``Structure and tie strengths in mobile
+  communication networks,'' {\em Proceedings of the National Academy of
+  Sciences}, vol.~104, no.~18, pp.~7332--7336, 2007.
+
+\bibitem{hovel}
+P.~{Hoevel} and A.-L. {Barabasi}, ``{Temporal and spatial regularity of
+  mobile-phone data},'' in {\em APS Meeting Abstracts}, p.~54005, Feb. 2012.
+
+\bibitem{catt}
+A.~Barrat and C.~Cattuto, ``Temporal networks of face-to-face human
+  interactions,'' in {\em Temporal Networks} (P.~Holme and J.~Saramäki, eds.),
+  Understanding Complex Systems, pp.~191--216, Springer Berlin Heidelberg,
+  2013.
+
+\bibitem{audiovideo}
+D.~Wyatt, T.~Choudhury, and H.~Kautz, ``Capturing spontaneous conversation and
+  social dynamics: A privacy-sensitive data collection effort,'' in {\em
+  Acoustics, Speech and Signal Processing, 2007. ICASSP 2007. IEEE
+  International Conference on}, vol.~4, pp.~IV--213--IV--216, April 2007.
+
+\bibitem{onbody}
+D.~Olguin, B.~Waber, T.~Kim, A.~Mohan, K.~Ara, and A.~Pentland, ``Sensible
+  organizations: Technology and methodology for automatically measuring
+  organizational behavior,'' {\em Systems, Man, and Cybernetics, Part B:
+  Cybernetics, IEEE Transactions on}, vol.~39, pp.~43--55, Feb 2009.
+
+\bibitem{wifi}
+M.~B. Kj{\ae}rgaard and P.~Nurmi, ``Challenges for social sensing using wifi
+  signals,'' in {\em Proceedings of the 1st ACM Workshop on Mobile Systems for
+  Computational Social Science}, MCSS '12, (New York, NY, USA), pp.~17--21,
+  ACM, 2012.
 
 \end{thebibliography}

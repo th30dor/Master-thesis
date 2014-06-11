@@ -1,12 +1,20 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Thesis.aux
 A level-1 auxiliary file: Chapter1.aux
+A level-1 auxiliary file: Chapter2.aux
+A level-1 auxiliary file: Chapter3.aux
 A level-1 auxiliary file: Appendix1.aux
-The style file: alpha.bst
-I found no \citation commands---while reading file Thesis.aux
+The style file: ieeetr.bst
 Database file #1: References.bib
-I was expecting a `,' or a `}'---line 342 of file References.bib
+I was expecting a `,' or a `}'---line 674 of file References.bib
  :    
  :    year            = {2009},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-(There were 2 error messages)
+Warning--I didn't find a database entry for "Pentland"
+Too many commas in name 1 of "Fredrik Liljeros, Christofer R. Edling, Luís A. Nunes Amaral, H. Eugene Stanley, Yvonne Åberg" for entry human_sex
+while executing---line 963 of file ieeetr.bst
+Too many commas in name 1 of "Fredrik Liljeros, Christofer R. Edling, Luís A. Nunes Amaral, H. Eugene Stanley, Yvonne Åberg" for entry human_sex
+while executing---line 963 of file ieeetr.bst
+Warning--empty journal in networks
+Warning--empty journal in quant
+(There were 3 error messages)
