@@ -5,7 +5,11 @@ A level-1 auxiliary file: Chapter3.aux
 A level-1 auxiliary file: Appendix1.aux
 The style file: ieeetr.bst
 Database file #1: References.bib
-I was expecting a `,' or a `}'---line 674 of file References.bib
+Warning--entry type for "android" isn't style-file defined
+--line 339 of file References.bib
+Warning--entry type for "jandroid" isn't style-file defined
+--line 347 of file References.bib
+I was expecting a `,' or a `}'---line 699 of file References.bib
  :    
  :    year            = {2009},
 (Error may have been on previous line)
