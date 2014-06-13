@@ -9,7 +9,17 @@ Warning--entry type for "android" isn't style-file defined
 --line 339 of file References.bib
 Warning--entry type for "jandroid" isn't style-file defined
 --line 347 of file References.bib
-I was expecting a `,' or a `}'---line 699 of file References.bib
+Warning--entry type for "googleapp" isn't style-file defined
+--line 355 of file References.bib
+Warning--entry type for "sensibledtu" isn't style-file defined
+--line 363 of file References.bib
+Warning--entry type for "nexus" isn't style-file defined
+--line 371 of file References.bib
+Warning--entry type for "activity" isn't style-file defined
+--line 379 of file References.bib
+Warning--entry type for "intentservice" isn't style-file defined
+--line 387 of file References.bib
+I was expecting a `,' or a `}'---line 730 of file References.bib
  :    
  :    year            = {2009},
 (Error may have been on previous line)

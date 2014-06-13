@@ -111,10 +111,31 @@ M.~B. Kj{\ae}rgaard and P.~Nurmi, ``Challenges for social sensing using wifi
   Computational Social Science}, MCSS '12, (New York, NY, USA), pp.~17--21,
   ACM, 2012.
 
+\bibitem{sensibledtu}
+``Sensibledtu.'' \url{https://www.sensible.dtu.dk/}, June 2014.
+
+\bibitem{nexus}
+``Samsung galaxy nexus.''
+  \url{http://www.samsung.com/us/mobile/cell-phones/GT-I9250TSGGEN}, June 2014.
+
 \bibitem{android}
 ``Android.'' \url{http://www.android.com/}, June 2014.
 
 \bibitem{jandroid}
 ``developer.android.com.'' \url{http://developer.android.com/}, June 2014.
+
+\bibitem{googleapp}
+``Google app engine.'' \url{https://developers.google.com/appengine/}, June
+  2014.
+
+\bibitem{activity}
+``Android activity.''
+  \url{http://developer.android.com/reference/android/app/Activity.html}, June
+  2014.
+
+\bibitem{intentservice}
+``Intentservice.''
+  \url{http://developer.android.com/reference/android/app/IntentService.html},
+  June 2014.
 
 \end{thebibliography}
