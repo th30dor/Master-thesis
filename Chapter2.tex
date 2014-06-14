@@ -1,10 +1,15 @@
 \chapter{Data acquisition}
 
-The data used in the paper has been gathered over the course of three months, starting in early March and ending in late May. The data has been obtained with the help of three student volunteers. Each volunteer carried a phone, provided by the SensibleDTU project, the same project this thesis is a part of \cite{sensibledtu, Stopczynski}. The phones are Samsung Galaxy Nexus \cite{nexus} and are running the Android operating system \cite{android}. 
+The data used in the paper has been gathered over the course of three months, starting in early March and ending in late May. The data has been obtained with the help of three student volunteers. Each volunteer carried a phone, provided by the SensibleDTU project, the same project this thesis is a part of \cite{sensibledtu, Stopczynski}. The phones are Samsung Galaxy Nexus \cite{nexus} and are running the Android operating system \cite{android}.
 
-Each phone came with two apps. The first recorded regularly a multitude of information, such as Bluetooth RSSI, GPS traces, battery usage and cell tower information, and is a part of the SensibleDTU project \cite{Stopczynski}, while the second allowed the volunteers to manually name the person they are in physical proximity with, and was developed during this thesis. The second app provided the ground-truth information.
+Each phone came with two apps. The first recorded regularly a multitude of information, such as Bluetooth RSSI, GPS traces, battery usage and cell tower information, and is a part of the SensibleDTU project \cite{Stopczynski}, while the second allowed the volunteers to manually name the person they are in physical proximity with, and was developed during this thesis. The second app provided the ground-truth information that confirmed the existence of physical proximity.
 
 This gave rise to two types of data. First, a continuous stream of regular measurements from the first app, and punctual messages from the second app. Below we will go into more detail about how exactly the two types of data look, how are they gathered and finally, how the two are combined to create a unitary set which serves as a basis for the machine learning algorithms.
+
+One last thing to mention is that the volunteers were not chosen completely random, but in such a way that guaranteed the existence of both types of data. On the one hand, the volunteers are all studying for a computer science major at DTU. This ensured that the students have found themselves in each others vicinity at some point during the data gathering period. Also, all three volunteers live in different places. This is important because house-mates or couples living together will introduce a very large amount of data that is very specific, while we are looking to generalize as much as possible.
+On the other hand, we needed to make sure that eventually, some volunteers are in each other's physical proximity. This was resolved by the fact that the volunteers had a course together. This ensured that at least once per week, usually two because of group work, the volunteers met.
+
+\section{Bluetooth}
 
 \section{FriendFinder app}
 
@@ -101,12 +106,55 @@ The smartphone data gathering is done by using a data collection app, based on t
 
 The Bluetooth data is obtained periodically by the data collection app using the Bluetooth probe. Each phone performs a Bluetooth scan every five minutes. The scan lasts 30 seconds. While the 30 second scan lasts, the app saves all Bluetooth devices (that are discoverable) in its proximity, the time at which the scan has been made, as well as the RSSI \cite{vedran}. The data is stored on the phone from where it eventually reaches the secure database server, from where it can be downloaded. 
 
-In order for the data to be used, it first needs to be \textit{cleaned}, as it contains additional meta-data ( fields used by the database for internal accounting), and devices that are not relevant to the thesis. The end result has the following format:
+In order for the data to be used, it first needs to be \textit{cleaned}, as it contains additional meta-data ( fields used by the database for internal accounting), and devices that are not part of the study. The end result has the following format:
 
 \begin{verbatim}
-{time, owner, target,signal_strength}
+{timestamp, owner, target,signal_strength}
 \end{verbatim}
  
- The above tuple has almost the same format as the one resulted from the FriendFinder app, with the addition of the new field, signal strength. At a first glance, one might think that the two sets of data can be easily combined. However, due to differences in the time when data gathering takes place, de-synchronization and the human factor, obtaining a single data set from the two is not a trivial matter. The following section goes into more detail regarding this issue.
+ The above tuple has almost the same format as the one resulted from the FriendFinder app, with the addition of a new field, signal strength. At a first glance, one might think that the two sets of data can be easily combined. However, due to differences in the time when data gathering takes place, de-synchronization and the human factor, obtaining a single data set from the two is not a trivial matter. The following section goes into more detail regarding this issue.
  
 \section{Data merger}
+
+With the data merger we aim to obtain a single data set that consists of ordered entries of the following form, for each participant:
+
+\begin{verbatim}
+{timestamp, signal_strength, tag}
+\end{verbatim} 
+
+Where \textit{signal\_strength} refers to the RSSI, \textit{timestamp} refers to the timestamp provided by the SensibleDTU data collector app, and \textit{tag} is either \textit{yes} or \textit{no}. The \textit{tag} has the following meaning:
+
+\begin{description}
+  \item[yes] This tag means that the data has been confirmed through the use of the FriendFinder app. This means that we have co-location.
+  \item[no] This tag mean that the data has not been confirmed through the use of the FriendFinder app. While the Bluetooth probe has discovered the device, and a RSSI exists, there is no co-location. The following are examples of situations where this might happen:  same room but a relatively large distance between the phones (cafeteria, large course rooms), transitional contacts (volunteers passing by each other), adjacent rooms with signal weakened by the walls. 
+\end{description}
+
+A first step is separating the SensibleDTU data on an user by user basis. For each volunteer, we obtain two timelines, which detail his interaction with the other two volunteers. Although measurements are taken every 5 minutes, the phones eventually become desynchronized. As such, we split the measurements into time windows, each window having a length of five minutes. This value was chosen because it matches with the period at which measurements are taken by the Bluetooth probe and gives a natural separation of the values obtained. Fig. \ref{pic:value_chain} shows a small part of a timeline with the splitting already done.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{figures/timechain.png}
+	\end{center}
+	
+	\caption{Example of timeline for a single volunteer. The time windows are easily visible, as well as the RSSI value measured for each one. The values are expressed as \textit{dBm}.}
+	\label{pic:value_chain}
+
+\end{figure}
+
+The above notion of tagging each timestamp now can be resolved by tagging each time window. The volunteers have been instructed to confirm the co-location once at the beginning of the meeting. In case of prolonged meetings, with separations and reunions, the volunteers were instructed to confirm again after each separation/reunion.   
+
+In tagging the windows, we have used the notion of measurement chain. We define it as a continuous, ordered series of one or more time windows, where we have a RSSI value measured for every window in the chain. For example, in Fig. \ref{pic:value_chain} we have three distinct measurement chains: the first one with two windows, the second one with only one window, and the last one with six windows.
+
+We tag a window \textit{w} with \textit{yes} if a FriendFinder app confirmation has been done in any window belonging to the chain that window \textit{w} also belongs, or the window immediately before, even if that window has no measurement. This last part is done to make sure that confirmations done in between Bluetooth probe measurements are not lost. Fig. \ref{pic:tag_yes} exemplifies how windows are tagged with \textit{yes}. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{figures/taggedyes.png}
+	\end{center}
+	
+	\caption{Example of how tagging takes place as a result of a confirmation by FriendFinder app data.}
+	\label{pic:tag_yes}
+
+\end{figure}
+
+After all the confirmations are taken into account and all the relevant chains are tagged with \textit{yes}, everything that remains is tagged with \textit{no}.  In the end we are left with a total number of 465 entries, Fig. \ref{pic:division} showing how they are divided:
