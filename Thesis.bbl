@@ -145,4 +145,19 @@ M.~B. Kj{\ae}rgaard and P.~Nurmi, ``Challenges for social sensing using wifi
 V.~{Sekara} and S.~{Lehmann}, ``{The Strength of Friendship Ties in Proximity
   Sensor Data},'' {\em ArXiv e-prints}, Jan. 2014.
 
+\bibitem{kohavi1995study}
+R.~Kohavi {\em et~al.}, ``A study of cross-validation and bootstrap for
+  accuracy estimation and model selection,'' in {\em IJCAI}, vol.~14,
+  pp.~1137--1145, 1995.
+
+\bibitem{segaran}
+T.~Segaran, {\em Programming Collective Intelligence Building Smart Web 2.0
+  Applications}.
+\newblock O'Reilly Media, 2007.
+
+\bibitem{rumelhart}
+D.~avid E.~.~Rumelhart, G.~eoffrey E.~.~Hinton, and R.~onald J.~.~Williams, ``-
+  {Learning} representations by back-propagating errors,'' vol.~- 323, no.~-
+  6088, pp.~-- -- 536, - 1986/10/09/print.
+
 \end{thebibliography}
