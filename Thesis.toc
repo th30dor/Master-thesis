@@ -23,14 +23,14 @@
 \contentsline {section}{\numberline {3.1}Testing methodology}{16}{section.3.1}
 \contentsline {section}{\numberline {3.2}Neural Networks}{17}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Theoretical overview}{17}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Implementation}{19}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Regressive data}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Theoretical overview}{19}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Implementation}{19}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Naive Bayes}{19}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Theoretical overview}{19}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Implementation}{19}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Comparison between the algorithms}{19}{section.3.5}
+\contentsline {subsection}{\numberline {3.2.2}Implementation}{20}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Regressive data}{20}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Theoretical overview}{20}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Implementation}{20}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Naive Bayes}{20}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Theoretical overview}{20}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Implementation}{20}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Comparison between the algorithms}{20}{section.3.5}
 \contentsline {chapter}{\numberline {4}Conclusions}{21}{chapter.4}
 \contentsline {chapter}{\numberline {A}Stuff}{23}{appendix.A}
 \contentsline {chapter}{Bibliography}{25}{appendix.A}

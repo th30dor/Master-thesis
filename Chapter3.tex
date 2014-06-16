@@ -24,13 +24,14 @@ During the execution of the tests, both k-fold validation and repeated random su
 
 \section{Neural Networks}
 
-A first approach aims to use artificial neural networks (ANN) in order to infer co-location. 
+A first approach aims to use artificial neural networks (ANN) in order to infer co-location. Specifically, this section will deal with feed-forward ANNs, both from a theoretical and a practical point of view. 
 
 \subsection{Theoretical overview}
 
-The introduction of backpropagation by Rumelhart et al. \cite{rumelhart} paved the way for the development of the modern artificial neural network. In their current form, ANNs can be described as a network of processing units, called \textit{neurons}, or \textit{artificial neurons}. 
+The introduction of backpropagation by Rumelhart et al. \cite{rumelhart} paved the way for the development of the modern artificial neural network. In their current form, ANNs can be described as a set of processing units, called \textit{neurons}, or \textit{artificial neurons} that communicate between each other. 
 
-The general layout of an ANN can be seen in Fig. \ref{pic:ann}. It consists of an input layer, one or more hidden layers and an output layer. The number of \textit{neurons} on the input layer is equal with the number of features that represent the object we need to classify. The number of \textit{neurons} in the output layer usually equals the number of classes the objects need to be classified in. The number of hidden layers, and the number of \textit{neurons} in those layers varies greatly from problem to problem, and will be discussed in the next section, which tackles the implementation details. 
+The general layout of a feed-forward ANN can be seen in Fig. \ref{pic:ann}. It consists of an input layer, one or more hidden layers and an output layer. The number of \textit{neurons} on the input layer is equal with the number of features that represent the object we need to classify. The number of \textit{neurons} in the output layer usually equals the number of classes the objects need to be classified in. The number of hidden layers, and the number of \textit{neurons} in those layers varies greatly from problem to problem, and will be discussed in the next section, which tackles the implementation details.
+In addition to the processing units, the other major components of a feed-forward network are the links between the \textit{neurons}. They type of ANN described here is feed-forward, which means the links are uni-directional. Information only moves from the input \textit{neurons}, to the \textit{neurons} in the hidden layers, to the \textit{neurons} in the output layers. For example, in Fig. \ref{pic:ann}, information only moves from left to right \cite{annintroduction2}.  
 
 \begin{figure}[h]
 	\begin{center}
@@ -42,9 +43,61 @@ The general layout of an ANN can be seen in Fig. \ref{pic:ann}. It consists of a
 
 \end{figure} 
 
-A neural network has two main components
+An artificial neural network gets its name from the similarity it has with the biological network of neurons one finds in the human or animal brain. The same can be said about the way it works. Each \textit{artificial neuron} receives an input from all the other \textit{neurons} on the previous layer (or they receive outside input if they are on the input layer). Once all the inputs are received, the \textit{neuron} in question processes them and outputs the result to \textit{neurons} on the next layer \cite{annintroduction}. Fig. \ref{pic:neuron} shows the details of an \textit{artificial neuron}.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures/neuron.png}
+	\end{center}
+	
+	\caption{Structure of an artificial neuron.}
+	\label{pic:neuron}
+
+\end{figure}
+
+Each link between \textit{neurons} is characterized by a weight, $w_i$. A \textit{neuron} applies a so-called \textit{activation function} on the weighted sum of the inputs, and outputs the result. Sometimes, a bias is used: $\theta$. Thus, the output of single \textit{neuron} can be expressed as:
+
+\begin{equation*}
+y = F(\sum_i w_i y_i + \theta)
+\end{equation*}
+
+\begin{description}
+  \item[$y$]   The output of the current \textit{neuron}.
+  \item[$F$]   The activation function. This is usually either the \textit{sigmoid} function, $y = F(x) = \frac{1}{1 + e^{-x}}$, or the \textit{tanh} function \cite{annintroduction}.
+  \item[$w_i$] The weight of an input link.
+  \item[$y_i$] The input, either from a previous layer of \textit{neurons}, or a from outside the network.
+  \item[$\theta$] Bias
+\end{description}
+
+In order for the network to output the expected result when presented with an input, it has to be set up. That translates into assigning appropriate values to the weights corresponding to the links between \textit{neurons}. One way of doing this is to manually assign the values. However, this implies a priori knowledge, which is not possible in most cases. The other choice is to \textit{train} the network. 
+
+The training method used here is backpropagation, first introduced in \cite{rumelhart}. The intuition behind is as follows. We randomly assign values to the weights $w_i$ in the ANN. We apply an input to the network, whose result we already know, and compare the outputted result with the correct one. The aim is to minimize the difference. 
+
+While the mathematical procedure through which researchers have reached backpropagation is outside the scope of this thesis, based on \cite{annintroduction} we will present the general equations used in the implementation of the algorithm:
+
+We modify each weight with:  
+\begin{equation*}
+\Delta w_k = \alpha \delta_k y_k
+\end{equation*}
+
+Where $\alpha$ is the learning rate, $y_k$ is the input value on link $k$, and $\delta_k$ is computed as follows:
+\begin{equation*}
+\delta_k = F'( \sum_i w_i y_i + \theta ) \sum \delta_l w_{kl}
+\end{equation*}
+
+Where $\delta_l$ is used in the next layer, and $w_{kl}$ represents a weight between the current layer and the next one. This process continues recursively, until we reach the output layer. In order to finish the computations, we need the $\delta_o$ which corresponds to the output layer:  
+
+\begin{equation*}
+\delta_o = (d - y) F'(\sum_i w_i y_i + \theta)
+\end{equation*}
+
+Where $d$ represents the expected output, and $y$ the desired output. As one can easily see, we begin from the output layer with computing $\delta_o$, and updating the corresponding weights. We then move further one layer, and compute the corresponding $\delta$ values. We continue to go back until we reach the links that connect to the input layer. From this procedure the \textit{back} in \textit{backpropagation} comes from. 
 
 \subsection{Implementation}
+
+For implementation purposes we used a Python neural network implementation, available at \cite{issam}. The network used has, besides the mandatory input and output layers a single hidden layer, choice that is confirmed both by literature \cite{Hornik1989359,Hartman,cybenko} and local experimentation. 
+
+
 
 
 \section{Regressive data}

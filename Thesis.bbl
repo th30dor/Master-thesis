@@ -160,4 +160,11 @@ D.~avid E.~.~Rumelhart, G.~eoffrey E.~.~Hinton, and R.~onald J.~.~Williams, ``-
   {Learning} representations by back-propagating errors,'' vol.~- 323, no.~-
   6088, pp.~-- -- 536, - 1986/10/09/print.
 
+\bibitem{annintroduction2}
+S.~Cross, R.~Harrison, and R.~Kennedy, ``Introduction to neural networks,''
+  {\em The Lancet}, vol.~346, no.~8982, pp.~1075 -- 1079, 1995.
+
+\bibitem{annintroduction}
+B.~Kröse and P.~van~der Smagt, ``An introduction to neural networks,'' 1993.
+
 \end{thebibliography}
