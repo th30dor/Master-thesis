@@ -167,4 +167,27 @@ S.~Cross, R.~Harrison, and R.~Kennedy, ``Introduction to neural networks,''
 \bibitem{annintroduction}
 B.~Kröse and P.~van~der Smagt, ``An introduction to neural networks,'' 1993.
 
+\bibitem{issam}
+``Neural network toolbox.''
+  \url{https://github.com/IssamLaradji/NeuralNetworks}, June 2014.
+
+\bibitem{Hornik1989359}
+K.~Hornik, M.~Stinchcombe, and H.~White, ``Multilayer feedforward networks are
+  universal approximators,'' {\em Neural Networks}, vol.~2, no.~5, pp.~359 --
+  366, 1989.
+
+\bibitem{Hartman}
+E.~Hartman, J.~D. Keeler, and J.~M. Kowalski, ``Layered neural networks with
+  gaussian hidden units as universal approximations,'' {\em Neural Comput.},
+  vol.~2, pp.~210--215, Apr. 1990.
+
+\bibitem{cybenko}
+G.~Cybenko, ``Approximation by superpositions of a sigmoidal function,'' {\em
+  Mathematics of Control, Signals and Systems}, vol.~2, no.~4, pp.~303--314,
+  1989.
+
+\bibitem{Stathakis}
+D.~Stathakis, ``How many hidden layers and nodes?,'' {\em International Journal
+  of Remote Sensing}, vol.~30, no.~8, pp.~2133--2147, 2009.
+
 \end{thebibliography}

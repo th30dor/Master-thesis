@@ -95,10 +95,61 @@ Where $d$ represents the expected output, and $y$ the desired output. As one can
 
 \subsection{Implementation}
 
-For implementation purposes we used a Python neural network implementation, available at \cite{issam}. The network used has, besides the mandatory input and output layers a single hidden layer, choice that is confirmed both by literature \cite{Hornik1989359,Hartman,cybenko} and local experimentation. 
+For implementation purposes we used a Python neural network, available at \cite{issam}. The network used has, besides the mandatory input and output layers a single hidden layer (which is enough \cite{Hornik1989359,Hartman,cybenko}). 
 
+The number of \textit{neurons} in the hidden layer differs greatly from problem to problem, with some authors suggesting any number between the number of neurons in the input layer, to two times that value \cite{Stathakis}. Due to the relatively small number of features extracted from the phone data, we have run tests varying numbers of hidden units. 
 
+During the testing, different values for the $\alpha$ parameter have been tried, in the end, the value that yielded the best results being 0.2. As such, all the tests that are done below are done with an $\alpha$ parameter of 0.2.
 
+We begin our testing with the most basic case. We use a single feature, the measured Bluetooth RSSI. The plot in Fig.~\ref{pic:ann_single} details the results obtained. While the accuracy is acceptable, we can easily see that varying the number of hidden nodes in the hidden layer has no impact on the result. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures/ann_single.png}
+	\end{center}
+	
+	\caption{Test accuracy for ANN when just the RSSI is used as a feature.}
+	\label{pic:ann_single}
+
+\end{figure}
+
+Next we try to make use of the notion of chains, as it was defined in Section~\ref{sec:data_merger}. When trying to infer co-location for a specific time window, we also look at the RSSI of the windows that are in the same chain, but before it. We gradually increased the number of \textit{neurons} in the hidden layer, as well as the number of windows we take into consideration. As we increased the number of windows, the length of the chains became a problem. Different chains have different lengths, but the number of features in the ANN remains constant. For example, when using four previous windows, and a chain has only a length of three, even in the best case scenario, we still have two missing features. 
+
+One way to deal with this problem is to simply discard the cases that are missing values. However, this introduces significant bias into the data, as observation of the dataset has shown that shorter chains are more likely to belong to the category tagged with \textit{no}. By discarding them, we greatly reduce the number of samples tagget with \textit{no}, thus unbalancing the overall proportion of training and testing data. As such, we used imputation to replace the missing values. Two approaches were used.
+
+A first approach used mean imputation. We replaced the missing data with the average of the values in the chain. Fig.~\ref{pic:ann_params1} shows the results obtained. Secondly, we used last observation carry forward \cite{locf}, as it involved ordered by time values. The results can be seen in Fig.~\ref{pic:ann_params2}. Consideration has been given to multiple imputation \cite{rubin2009multiple}, however, its cost, and the next result made it unsuitable.  
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures/ann_params1.png}
+	\end{center}
+	
+	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with mean imputation.}
+	\label{pic:ann_params1}
+
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures/ann_params2.png}
+	\end{center}
+	
+	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with last observation carry forward imputation.}
+	\label{pic:ann_params2}
+
+\end{figure}
+
+Taking into account the additional information provided by the chain that a window belongs to clearly improves the result. However, the previous approach had a number of issues. For the next set of parameters, we only use two features: the RSSI of the current window, and the length of the chain the window is a part of. This has the strength of avoiding any bias introduced by imputation, while at the same time making almost full use of the additional information provided by the chain. Fig.~\ref{pic:ann_chain} shows the test accuracy for this choice of features.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures/ann_chain.png}
+	\end{center}
+	
+	\caption{Test accuracy for ANN when the RSSI and the chain length are used as features.}
+	\label{pic:ann_chain}
+
+\end{figure}     
 
 \section{Regressive data}
 
