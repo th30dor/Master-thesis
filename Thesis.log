@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.6.2)  17 JUN 2014 16:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.6.2)  17 JUN 2014 19:21
 entering extended mode
 **C:/D/scoala/teza/thesis_final/Thesis.tex
 (C:/D/scoala/teza/thesis_final/Thesis.tex
@@ -837,94 +837,81 @@ Chapter 3.
 
 
 
-]
-Underfull \vbox (badness 2818) has occurred while \output is active []
-
- [16]
-<figures/ANN.png, id=419, 420.57124pt x 488.82625pt>
+] [16] <figures/ANN.png, id=420, 420.57124pt x 488.82625pt>
 File: figures/ANN.png Graphic file (type png)
- <use figures/ANN.png>
-Package pdftex.def Info: figures/ANN.png used on input line 38.
+
+<use figures/ANN.png>
+Package pdftex.def Info: figures/ANN.png used on input line 40.
 (pdftex.def)             Requested size: 252.3447pt x 293.298pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/neuron.png, id=422, 800.9925pt x 590.205pt>
+<figures/neuron.png, id=423, 800.9925pt x 590.205pt>
 File: figures/neuron.png Graphic file (type png)
  <use figures/neuron.png>
-Package pdftex.def Info: figures/neuron.png used on input line 50.
+Package pdftex.def Info: figures/neuron.png used on input line 52.
 (pdftex.def)             Requested size: 240.29959pt x 177.06287pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 1264) has occurred while \output is active []
-
- [17]
-[18 <C:/D/scoala/teza/thesis_final/figures/ANN.png>] [19 <C:/D/scoala/teza/thes
-is_final/figures/neuron.png>]
+[17] [18 <C:/D/scoala/teza/thesis_final/figures/ANN.png>] [19 <C:/D/scoala/teza
+/thesis_final/figures/neuron.png>]
 <figures/ann_simple.png, id=458, 586.8324pt x 442.2924pt>
 File: figures/ann_simple.png Graphic file (type png)
 
 <use figures/ann_simple.png>
-Package pdftex.def Info: figures/ann_simple.png used on input line 108.
+Package pdftex.def Info: figures/ann_simple.png used on input line 110.
 (pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
 
-Overfull \hbox (6.79951pt too wide) in paragraph at lines 108--109
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 110--111
  [] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20] <figures/ann_params2.png, id=474, 586.8324pt x 442.2924pt>
+[20] [21 <C:/D/scoala/teza/thesis_final/figures/ann_simple.png>]
+<figures/ann_params2.png, id=480, 586.8324pt x 442.2924pt>
 File: figures/ann_params2.png Graphic file (type png)
 
 <use figures/ann_params2.png>
-Package pdftex.def Info: figures/ann_params2.png used on input line 124.
+Package pdftex.def Info: figures/ann_params2.png used on input line 128.
 (pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
 
-Overfull \hbox (6.79951pt too wide) in paragraph at lines 124--125
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 128--129
  [] 
  []
 
-[21 <C:/D/scoala/teza/thesis_final/figures/ann_simple.png>]
-<figures/ann_params1.png, id=483, 586.8324pt x 442.2924pt>
+[22 <C:/D/scoala/teza/thesis_final/figures/ann_params2.png>]
+<figures/ann_params1.png, id=490, 586.8324pt x 442.2924pt>
 File: figures/ann_params1.png Graphic file (type png)
 
 <use figures/ann_params1.png>
-Package pdftex.def Info: figures/ann_params1.png used on input line 136.
+Package pdftex.def Info: figures/ann_params1.png used on input line 140.
 (pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
 
-Overfull \hbox (6.79951pt too wide) in paragraph at lines 136--137
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 140--141
  [] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[22 <C:/D/scoala/teza/thesis_final/figures/ann_params2.png>]
-<figures/ann_chain.png, id=491, 586.8324pt x 442.2924pt>
+[23 <C:/D/scoala/teza/thesis_final/figures/ann_params1.png>]
+<figures/ann_chain.png, id=497, 586.8324pt x 442.2924pt>
 File: figures/ann_chain.png Graphic file (type png)
 
 <use figures/ann_chain.png>
-Package pdftex.def Info: figures/ann_chain.png used on input line 150.
+Package pdftex.def Info: figures/ann_chain.png used on input line 154.
 (pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[23 <C:/D/scoala/teza/thesis_final/figures/ann_params1.png>]
-<figures/ann_total.png, id=500, 586.8324pt x 442.2924pt>
+<figures/ann_total.png, id=499, 586.8324pt x 442.2924pt>
 File: figures/ann_total.png Graphic file (type png)
 
 <use figures/ann_total.png>
-Package pdftex.def Info: figures/ann_total.png used on input line 164.
+Package pdftex.def Info: figures/ann_total.png used on input line 168.
 (pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
 
-Overfull \hbox (6.79951pt too wide) in paragraph at lines 164--165
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 168--169
  [] 
  []
 
@@ -932,39 +919,62 @@ Overfull \hbox (6.79951pt too wide) in paragraph at lines 164--165
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `logmodel' on page 24 undefined on input line 175.
+LaTeX Warning: Reference `logmodel' on page 24 undefined on input line 179.
 
-[24 <C:/D/scoala/teza/thesis_final/figures/ann_chain.png>]
 
-LaTeX Warning: Reference `kleinbaum2010logistic' on page 25 undefined on input 
-line 188.
+Underfull \vbox (badness 1132) has occurred while \output is active []
 
-[25 <C:/D/scoala/teza/thesis_final/figures/ann_total.png>]
+ [24 <C:/D/scoala/teza/thesis_final/figures/ann_chain.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25 <C:/D/scoala/teza/thesis_final/figures/ann_total.png>]
+
+LaTeX Warning: Reference `kleinbaum2010logistic' on page 26 undefined on input 
+line 192.
+
 <figures/logit.png, id=515, 521.95pt x 321.2pt>
 File: figures/logit.png Graphic file (type png)
  <use figures/logit.png>
-Package pdftex.def Info: figures/logit.png used on input line 197.
+Package pdftex.def Info: figures/logit.png used on input line 201.
 (pdftex.def)             Requested size: 260.97435pt x 160.59961pt.
 
-[26 <C:/D/scoala/teza/thesis_final/figures/logit.png>]) [27]
-(C:\D\scoala\teza\thesis_final\Chapter4.tex [28
+[26 <C:/D/scoala/teza/thesis_final/figures/logit.png>]
+<figures/logic_tot.png, id=532, 586.8324pt x 442.2924pt>
+File: figures/logic_tot.png Graphic file (type png)
+
+<use figures/logic_tot.png>
+Package pdftex.def Info: figures/logic_tot.png used on input line 237.
+(pdftex.def)             Requested size: 410.77988pt x 309.60257pt.
+
+Overfull \hbox (65.47723pt too wide) in paragraph at lines 237--238
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[27]
+Underfull \vbox (badness 3449) has occurred while \output is active []
+
+ [28 <C:/D/scoala/teza/thesis_final/figures/logic_tot.png>]) [29]
+(C:\D\scoala\teza\thesis_final\Chapter4.tex [30
 
 
 
 ]
 Chapter 4.
-) [29] (C:\D\scoala\teza\thesis_final\Appendix1.tex [30
+) [31] (C:\D\scoala\teza\thesis_final\Appendix1.tex [32
 
 
 
 ]
 Appendix A.
-) [31] [32
+) [33] [34
 
 
-] (C:\D\scoala\teza\thesis_final\Thesis.bbl [33
+] (C:\D\scoala\teza\thesis_final\Thesis.bbl [35
 
-] [34]
+] [36]
 Underfull \hbox (badness 10000) in paragraph at lines 118--120
 []\T1/cmr/m/n/10 ``Samsung galaxy nexus.'' [][]$\T1/cmtt/m/n/10 http : / / www 
 . samsung . com / us / mobile /$
@@ -994,9 +1004,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 171--173
  github . com / IssamLaradji /$
  []
 
-[35])
+[37])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
- [36]
+ [38]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
  (C:\D\scoala\teza\thesis_final\Thesis.aux
 (C:\D\scoala\teza\thesis_final\Chapter1.aux)
@@ -1015,10 +1025,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
  ) 
 Here is how much of TeX's memory you used:
- 9128 strings out of 493706
- 132181 string characters out of 3142172
- 230928 words of memory out of 3000000
- 12076 multiletter control sequences out of 15000+200000
+ 9139 strings out of 493706
+ 132374 string characters out of 3142172
+ 231038 words of memory out of 3000000
+ 12082 multiletter control sequences out of 15000+200000
  26810 words of font info for 68 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  43i,12n,45p,911b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1048,9 +1058,9 @@ s/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 msy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
 7.pfb>
-Output written on Thesis.pdf (48 pages, 1050666 bytes).
+Output written on Thesis.pdf (50 pages, 1093131 bytes).
 PDF statistics:
- 1222 PDF objects out of 1440 (max. 8388607)
- 146 named destinations out of 1000 (max. 500000)
- 358 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1238 PDF objects out of 1440 (max. 8388607)
+ 150 named destinations out of 1000 (max. 500000)
+ 363 words of extra memory for PDF output out of 10000 (max. 10000000)
 

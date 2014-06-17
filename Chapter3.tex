@@ -4,10 +4,12 @@ With the data extracted and formatted in suitable manner, as described in the pr
 
 One way of answering these questions is to simply set a threshold, and split the dataset into two parts: the ones that are above the threshold indicate co-location, while the other do not. That is exactly what \textit{Sekara,Lehmann} did in \cite{vedran}, with convincing results. They set the threshold to \textit{ -80 dBm}. 
 
-On a similar note, we average our two types of data, the ones tagged \textit{yes} and \textit{no}, and we obtain an average of \textit{-64 dBm} for the ones tagged \textit{yes} and an average of {-82 dBm} for the ones tagged \textit{no}. From this result, one can easily see the similarity between the threshold in \textit{Sekara,Lehmann}'s work and the values obtained through this thesis's data, further indicating the validity of this result. 
+On a similar note, we average our two types of data, the ones tagged \textit{yes} and \textit{no}, and we obtain an average of \textit{-64 dBm} for the ones tagged \textit{yes} and an average of {-82 dBm} for the ones tagged \textit{no}. From this result, one can easily see the similarity between the threshold in \textit{Sekara,Lehmann}'s work and the values obtained through this thesis's data. 
 
-The above method can successfully be used under any type of measurements. However, it does not take advantage of the additional information that our method of data gathering has provided, such as temporal information, or the significance of continuous measurements. Below we propose three methods of inferring pairwise co-location in the form of three machine learning algorithms. For each one we will provide a theoretical overview and implementation details. The chapter will end with a comparison between the three algorithms where results, ease of use and performance will be taken into consideration. 
+The above method can successfully be used under any type of measurements. However, it does not take advantage of the additional information that our method of data gathering has provided, such as temporal information, or the significance of continuous measurements. Below we propose three methods of inferring pairwise co-location in the form of three machine learning algorithms. For each one we will provide a theoretical overview and implementation details, followed by a discussion of the results. The chapter will end with a comparison between the three algorithms where results, ease of use and performance will be taken into consideration.
 
+In Section~\ref{sec:data_merger} we split our data into time windows. At any one point during the execution of the algorithms, we will be referring to a single time window, the one for which we want to infer co-location. Of course, additional parameters and features will be used, but even if not specified, every run of any algorithm described below will include, even if not specifically noted, at least the RSSI of a single time window, the one mentioned at the beginning of this paragraph. 
+ 
 While the parameters and the inputs used differ from one algorithm to another, one thing that remains constant across all of them is the testing methodology, described in the following section.
 
 \section{Testing methodology}
@@ -19,7 +21,7 @@ In order to test the accuracy of the algorithms, we use cross-validation, a well
   \item For random sub-sampling validation, the dataset is partitioned into two sets. The entries are randomly assigned to one of the sets based on the proportion established at the beginning. For this type of validation, the test has been repeated 100 times, and the results averaged.   
 \end{itemize}
 
-During the execution of the tests, both k-fold validation and repeated random sub-sampling validation output extremely similar results, most of the time the results having a less than $0.5\%$ difference between them. For this reason, when presenting an algorithm score, that score will be the average of the two methods. 
+During the execution of the tests, both k-fold validation and repeated random sub-sampling validation output extremely similar results, most of the time the results having less than $0.5\%$ difference between them. For this reason, when presenting an algorithm score, that score will be the average of the two methods. 
 
 
 \section{Neural Networks}
@@ -95,11 +97,11 @@ Where $d$ represents the expected output, and $y$ the desired output. As one can
 
 \subsection{Results}
 
-For implementation purposes we used a Python neural network, available at \cite{issam}. The network used has, besides the mandatory input and output layers a single hidden layer (which is enough \cite{Hornik1989359,Hartman,cybenko}). 
+For implementation purposes we used a Python neural network, available at \cite{issam}. The network used has, besides the mandatory input and output layers, a single hidden layer (which is enough \cite{Hornik1989359,Hartman,cybenko}). 
 
-The number of \textit{neurons} in the hidden layer differs greatly from problem to problem, with some authors suggesting any number between the number of neurons in the input layer, to two times that value \cite{Stathakis}. Due to the relatively small number of features extracted from the phone data, we have run tests varying numbers of hidden units. 
+The number of \textit{neurons} in the hidden layer differs greatly from problem to problem, with some authors suggesting any number between the number of \textit{neurons} in the input layer, to up to two times that value \cite{Stathakis}. Due to the relatively small number of features extracted from the phone data, we have run tests varying numbers of hidden units in the above mentioned range. 
 
-During the testing, different values for the $\alpha$ parameter have been tried, in the end, the value that yielded the best results being 0.2. As such, all the tests that are done below are done with an $\alpha$ parameter of 0.2.
+During the testing, different values for the $\alpha$ parameter have been tried, in the end, the values that yielded the best results being between 0.15 and 0.4, with little variation. As such, all the tests that are done below are done with an $\alpha$ parameter of 0.2. 
 
 We begin our testing with the most basic case. We use a single feature, the measured Bluetooth RSSI. The plot in Fig.~\ref{pic:ann_single} details the results obtained. While the accuracy is acceptable, we can easily see that varying the number of hidden nodes in the hidden layer has no impact on the result. 
 
@@ -113,11 +115,13 @@ We begin our testing with the most basic case. We use a single feature, the meas
 
 \end{figure}
 
-Next we try to make use of the notion of chains, as it was defined in Section~\ref{sec:data_merger}. When trying to infer co-location for a specific time window, we also look at the RSSI of the windows that are in the same chain, but before it. We gradually increased the number of \textit{neurons} in the hidden layer, as well as the number of windows we take into consideration. As we increased the number of windows, the length of the chains became a problem. Different chains have different lengths, but the number of features in the ANN remains constant. For example, when using four previous windows, and a chain has only a length of three, even in the best case scenario, we still have two missing features. 
+Next we try to make use of the notion of chains, as it was defined in Section~\ref{sec:data_merger}. When trying to infer co-location for a specific time window, we also look at the RSSI of the windows that are in the same chain, but before it. We gradually increased the number of \textit{neurons} in the hidden layer, as well as the number of windows we take into consideration. 
 
-One way to deal with this problem is to simply discard the cases that are missing values. However, this introduces significant bias into the data, as observation of the dataset has shown that shorter chains are more likely to belong to the category tagged with \textit{no}. By discarding them, we greatly reduce the number of samples tagget with \textit{no}, thus unbalancing the overall proportion of training and testing data. As such, we used imputation to replace the missing values. Two approaches were used.
+As we increased the number of windows, the length of the chains becomes a problem. Different chains have different lengths, but the number of features in the ANN remains constant. For example, when using four previous windows, and a chain has only a length of three, even in the best case scenario, we still have two missing features. 
 
-A first approach used mean imputation. We replaced the missing data with the average of the values in the chain. Fig.~\ref{pic:ann_params2} shows the results obtained. Secondly, we used last observation carry forward \cite{locf}, as it involved ordered by time values. The results can be seen in Fig.~\ref{pic:ann_params1}. Consideration has been given to multiple imputation \cite{rubin2009multiple}, however, its cost, and the next result made it unsuitable.  
+One way to deal with this problem is to simply discard the cases that are missing values. However, this introduces significant bias into the data, as observation of the dataset has shown that shorter chains are more likely to belong to the category tagged with \textit{no}. By discarding them, we greatly reduce the number of samples tagged with \textit{no}, thus unbalancing the overall proportion of training and testing data. As such, we used imputation to replace the missing values. Two approaches were used.
+
+A first approach used mean imputation. We replaced the missing data with the average of the values in the chain. Fig.~\ref{pic:ann_params2} shows the results obtained. Secondly, we used last observation carry forward \cite{locf}, as it involved items ordered by time value. The results can be seen in Fig.~\ref{pic:ann_params1}. Consideration has been given to multiple imputation \cite{rubin2009multiple}, however, its cost, and the next result made it unsuitable.  
 
 \begin{figure}[h]
 	\begin{center}
@@ -129,7 +133,7 @@ A first approach used mean imputation. We replaced the missing data with the ave
 
 \end{figure}
 
-As we increase the number of time windows, for mean imputation, the accuracy increases. However, this is due to the uniformization of data, as every value that is missing is replaced with the average. As the average is about the same between the testing set and the learning set, we end up with entries who look extremely similar. Still, it is an improvement over the basic case that uses only the RSSI value.  
+As we increase the number of time windows, for mean imputation, the accuracy increases. However, this is due to the uniformization of data, as every value that is missing is replaced with the average. As the average is almost the same between the testing set and the learning set, we end up with entries who sometimes look extremely alike. When entries are full of averages, the difference is made by the real data. As the number of time windows with real data decreases, this choice of parameters comes closer and closer to the basic one. However, even with one extra bin, this choice of parameters is an improvement over it, as every extra time windows has the chance of providing new data.   
 
 \begin{figure}[h]
 	\begin{center}
@@ -141,9 +145,9 @@ As we increase the number of time windows, for mean imputation, the accuracy inc
 
 \end{figure}
 
-Last observation carry forward actually produces worse results than the basic case. As we increase the number of time windows used, the accuracy drops even more. It is clear that this is not a suitable approach 
+Running the algorithm with a last observation carry forward strategy for replacing missing values produces negative results. Even taking into consideration the best result of this set, obtained with only one extra time window, we are still below or close to the score of the basic set.  As we increase the number of time windows used, the accuracy drops markedly, with an almost 7\% jump downwards between one and two extra time windows, and a 4\% drop between two and three extra time windows. This choice of parameters is unsuitable for this algorithm.    
 
-Taking into account the additional information provided by the chain that a window belongs to clearly improves the result. However, the previous approach had a number of issues. For the next set of parameters, we only use two features: the RSSI of the current window, and the length of the chain the window is a part of. This has the strength of avoiding any bias introduced by imputation, while at the same time making almost full use of the additional information provided by the chain. Fig.~\ref{pic:ann_chain} shows the test accuracy for this choice of features.
+Taking into account the additional information provided by the chain that a window belongs to can improve the result. However, the previous approach had a number of issues, related to missing values, and the choice of how many extra time bins should be taken into consideration. For the next set of parameters, we only use two features: the RSSI of the current window, and the length of the chain the window is a part of. This has the strength of avoiding any bias introduced by imputation, while at the same time making almost full use of the additional information provided by the chain. Fig.~\ref{pic:ann_chain} shows the test accuracy for this choice of features.
 
 \begin{figure}[h]
 	\begin{center}
@@ -155,7 +159,7 @@ Taking into account the additional information provided by the chain that a wind
 
 \end{figure}
 
-Finally, Fig.~\ref{pic:ann_total} shows a plot with a comparison between the best results for each choice of parameters. Clearly, using just the current window RSSI and the chain length is the best choice. While providing just a minor increase in computation cost by adding just one extra new feature, it is better than the basic case by more than 10\%. The parameter set using mean imputation comes close, but still produces inferior results. Furthermore, the use of imputation raises questions regarding the validity of the obtained result. 
+Finally, Fig.~\ref{pic:ann_total} shows a plot with a comparison between the best results for each choice of parameters. Clearly, using just the current window RSSI and the chain length is the best choice. While providing just a minor increase in computation cost by adding just one extra new feature, it is better than the basic case by more than 10\%. The parameter set using mean imputation comes close, but still produces inferior results. Furthermore, the use of imputation raises questions regarding the validity of the obtained result, as well as over-fitting. 
 
 Across the entire suite of tests, the variation in the number of \textit{neurons} had little to no impact on the overall accuracy of the tests. Even with a minimum number of \textit{neurons}, the results were extremely close to cases where four or five were used. The extra \textit{neurons}, however, did had an impact on the overall performance. The difference between using three \textit{neurons} instead of one translated into a doubling of the training and running time. 
 
@@ -226,6 +230,27 @@ Where the first term corresponds to cases that belong to one category, and the s
  
 \subsection{Results}
 
+We used the Scikit-learn \cite{scikit-learn} implementation for the logistic regressor. For testing purposes we used the same sets of parameters as before. The results can be seen in Fig. \ref{pic:logic_tot}.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.7]{figures/logic_tot.png}
+	\end{center}
+	
+	\caption{Testing results for logistic regression.}
+	\label{pic:logic_tot}
+
+\end{figure}
+
+For the basic case, where only the Bluetooth RSSI measurement is used, the accuracy reaches 82\%. We then continue the tests with the use of multiple time windows. Again, in case of missing windows, we use imputation, both mean imputation and last observation carry forward. 
+
+Increasing the number of time windows used has little effect on the mean imputation parameter set, it peaking at 83\%, when two extra time windows were used. This value comes very close to the score obtained with basic set, and also introduces a high amount of computational overhead, from the algorithm (as we add more features, more values need to be estimated), as well as the database structure(as the chain structures need to be traversed). Overall, this choice of parameters brings little against the basic set.
+
+The same cannot be said by the variation that uses last observation carry forward. Increasing the number of time windows taken into consideration has a significant effect on the overall accuracy of the algorithm. Unfortunately, it is not a positive one. As we increase that number, the accuracy decreases dramatically. Even with one extra time window, the score we obtain is lower than even the basic case. When we move to two extra windows, the score drops to 74.2\%, to 72.6\% for three windows, and 71.5\% for four windows, and the trend continues. Clearly, this choice of parameters is not suitable for this particular algorithm. 
+
+The last choice of parameters is the Bluetooth RSSI of the current time window and the length of the chain it belongs to. This set of parameters provides a significant improvement over all the other cases, with an accuracy of almost 92\%. In addition to the improved test score, this choice requires only one new feature to be added to the algorithm, in comparison to the base case.
+
+Although the results obtained using mean imputation are usable, the fact that they are almost identical to the base case gives us no reason to chose it. Overall, the chain length has the most impact on accuracy, while at the same time avoiding the pitfalls of imputation, making it the best choice for logistic regression. 
 
 \section{Naive Bayes}
 
