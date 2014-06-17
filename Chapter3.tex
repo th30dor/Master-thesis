@@ -93,7 +93,7 @@ Where $\delta_l$ is used in the next layer, and $w_{kl}$ represents a weight bet
 
 Where $d$ represents the expected output, and $y$ the desired output. As one can easily see, we begin from the output layer with computing $\delta_o$, and updating the corresponding weights. We then move further one layer, and compute the corresponding $\delta$ values. We continue to go back until we reach the links that connect to the input layer. From this procedure the \textit{back} in \textit{backpropagation} comes from. 
 
-\subsection{Implementation}
+\subsection{Results}
 
 For implementation purposes we used a Python neural network, available at \cite{issam}. The network used has, besides the mandatory input and output layers a single hidden layer (which is enough \cite{Hornik1989359,Hartman,cybenko}). 
 
@@ -129,7 +129,7 @@ A first approach used mean imputation. We replaced the missing data with the ave
 
 \end{figure}
 
-As we increase the number of time windows, the accuracy increases. However, this is due to the uniformization of data, as every value that is missing is replaced with the average. As the average is about the same between the testing set and the learning set, we end up with entries who look extremely similar. Still, it is an improvement over the basic case that uses only the RSSI value.  
+As we increase the number of time windows, for mean imputation, the accuracy increases. However, this is due to the uniformization of data, as every value that is missing is replaced with the average. As the average is about the same between the testing set and the learning set, we end up with entries who look extremely similar. Still, it is an improvement over the basic case that uses only the RSSI value.  
 
 \begin{figure}[h]
 	\begin{center}
@@ -155,7 +155,9 @@ Taking into account the additional information provided by the chain that a wind
 
 \end{figure}
 
-Finally, Fig.~\ref{pic:ann_total} shows a plot with a comparison between the best results for each choice of parameters. Clearly, using just the current window RSSI and the chain length is the best choice. While providing just a minor increase in computation cost by adding just one extra new feature, it is better than the basic case by more than 10%. The parameter set using mean imputation comes close, but still produces inferior results. Furthermore, the use of imputation raises questions regarding the validity of the obtained result.  
+Finally, Fig.~\ref{pic:ann_total} shows a plot with a comparison between the best results for each choice of parameters. Clearly, using just the current window RSSI and the chain length is the best choice. While providing just a minor increase in computation cost by adding just one extra new feature, it is better than the basic case by more than 10\%. The parameter set using mean imputation comes close, but still produces inferior results. Furthermore, the use of imputation raises questions regarding the validity of the obtained result. 
+
+Across the entire suite of tests, the variation in the number of \textit{neurons} had little to no impact on the overall accuracy of the tests. Even with a minimum number of \textit{neurons}, the results were extremely close to cases where four or five were used. The extra \textit{neurons}, however, did had an impact on the overall performance. The difference between using three \textit{neurons} instead of one translated into a doubling of the training and running time. 
 
 \begin{figure}[h]
 	\begin{center}
@@ -168,17 +170,67 @@ Finally, Fig.~\ref{pic:ann_total} shows a plot with a comparison between the bes
 \end{figure}
      
 
-\section{Regressive data}
+\section{Logistic regression}
+
+In order to meet the objective stated at the beginning of this thesis, we look at the measured Bluetooth RSSI, and some adjacent data, and we try to decide if we have co-location. This can be expressed as the output(response) variable is depending on the input(explanatory) variables  \ref{logmodel}. This immediately leads to the idea of regression. The most basic example of this is the linear regression. However, linear regression has an output variable that is continuous, which is unsuitable for the problem raised by this thesis.
+
+Indeed, here we have a dichotomous outcome. Given a set of measurements, there either is or isn't co-location. For these types of situation, a different type of regression is required, namely logistic regression. 
 
 \subsection{Theoretical overview}
 
-\subsection{Implementation}
+Although usually regressions are used to either predict or estimate a certain value, logistic regression is actually a classifier, thus suitable for our problem. 
+
+The foundation of the logistic regression consists of the logistic function:
+\begin{equation*}
+f(y) = \frac{1}{1+e^{-y}}
+\end{equation*}
+
+Fig.~\ref{pic:logit} shows the plot of the logistic function. It has several attractive qualities. Based on \ref{kleinbaum2010logistic}:
+
+\begin{itemize}
+  \item Its output values are between $0$ and $1$. Thus it can easily map probabilities, which is the result of the logistic model.
+  \item Looking at Fig.~\ref{pic:logit}, we can discern the presence two points after which the function increases(decreases) significantly , which can be considered activation thresholds, when looking from the point of view of a classifier.  
+\end{itemize}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures/logit.png}
+	\end{center}
+	
+	\caption{Plot of the logisitic function.}
+	\label{pic:logit}
+
+\end{figure}
+
+Based on \cite{kleinbaum2010logistic,logmodel,statistics}: for a set of measurements, the logistic model computes the probability that they belong to either one of the categories. We wish to model the dependence between $X$, which consists of a set of variables $X = \lbrace X_1,X_2,X_3,... \rbrace$ and $p(X) = Pr(Y \vert X)$, where $Y$ represents the classifier labels. Using the above logistic function, we can write:
+\begin{equation*}
+p(X) = \frac{1}{1+e^{-X}}
+\end{equation*}
+
+But $X$ can be written as a linear combination of the input variables: $X = \beta_0 + \beta_1X_1 + \beta_2X_2 ...$. Replacing in the above equation we obtain:
+\begin{equation*}
+p(X) = \frac{1}{1+e^{-(\beta_0 + \beta_1X_1 + \beta_2X_2 ...)}}
+\end{equation*}
+
+We also need to compute the \textit{logit}, the inverse of the above function:
+\begin{equation*}
+ln\frac{p(X)}{1 - p(X)} = \beta_0 + \beta_1X_1 + \beta_2X_2 ...
+\end{equation*}
+
+All that is left now is to estimate the unknown quantities $\beta_0, \beta_1, \beta_2...$. This is usually done with maximum likelihood estimation \cite{menard2009logistic}. Intuitively, the method looks for estimates of $\beta_0, \beta_1, \beta_2...$, so that the results obtained using those estimates come very close (or as close as they can) to the expected result. The maximum likelihood estimation makes use of the likelihood function:
+
+\begin{equation*}
+l(\beta) = \prod_ip(X_i)[1 - p(X_i)]
+\end{equation*} 
+Where the first term corresponds to cases that belong to one category, and the second to cases that belong to the other category. The estimations for $\beta_0, \beta_1, \beta_2...$ are chosen so that the above function is maximized. Solving the above equation entails the use of iterative methods \cite{logmodel}, and is outside the scope of this paper.
+ 
+\subsection{Results}
 
 
 \section{Naive Bayes}
 
 \subsection{Theoretical overview}
 
-\subsection{Implementation}
+\subsection{Results}
 
 \section {Comparison between the algorithms}

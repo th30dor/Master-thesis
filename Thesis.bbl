@@ -197,6 +197,24 @@ J.~Shao and B.~Zhong, ``Last observation carry-forward and last observation
 
 \bibitem{rubin2009multiple}
 D.~B. Rubin, {\em Multiple imputation for nonresponse in surveys}, vol.~307.
-\newblock John Wiley \& Sons, 2009.
+\newblock John Wiley and Sons, 2009.
+
+\bibitem{kleinbaum2010logistic}
+D.~G. Kleinbaum and M.~Klein, {\em Logistic regression: a self-learning text}.
+\newblock Springer, 2010.
+
+\bibitem{logmodel}
+D.~W. Hosmer, Jr., S.~Lemeshow, and R.~X. Sturdivant, {\em Introduction to the
+  Logistic Regression Model}, pp.~1--33.
+\newblock John Wiley \& Sons, Inc., 2013.
+
+\bibitem{statistics}
+G.~J. D. W. T. H.~R. Tibshirani, {\em An Introduction to Statistical Learning}.
+\newblock Springer, 2013.
+
+\bibitem{menard2009logistic}
+S.~Menard, {\em Logistic regression: From introductory to advanced concepts and
+  applications}.
+\newblock Sage, 2009.
 
 \end{thebibliography}
