@@ -105,7 +105,7 @@ We begin our testing with the most basic case. We use a single feature, the meas
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.3]{figures/ann_single.png}
+		\includegraphics[scale=0.6]{figures/ann_simple.png}
 	\end{center}
 	
 	\caption{Test accuracy for ANN when just the RSSI is used as a feature.}
@@ -117,11 +117,11 @@ Next we try to make use of the notion of chains, as it was defined in Section~\r
 
 One way to deal with this problem is to simply discard the cases that are missing values. However, this introduces significant bias into the data, as observation of the dataset has shown that shorter chains are more likely to belong to the category tagged with \textit{no}. By discarding them, we greatly reduce the number of samples tagget with \textit{no}, thus unbalancing the overall proportion of training and testing data. As such, we used imputation to replace the missing values. Two approaches were used.
 
-A first approach used mean imputation. We replaced the missing data with the average of the values in the chain. Fig.~\ref{pic:ann_params1} shows the results obtained. Secondly, we used last observation carry forward \cite{locf}, as it involved ordered by time values. The results can be seen in Fig.~\ref{pic:ann_params2}. Consideration has been given to multiple imputation \cite{rubin2009multiple}, however, its cost, and the next result made it unsuitable.  
+A first approach used mean imputation. We replaced the missing data with the average of the values in the chain. Fig.~\ref{pic:ann_params2} shows the results obtained. Secondly, we used last observation carry forward \cite{locf}, as it involved ordered by time values. The results can be seen in Fig.~\ref{pic:ann_params1}. Consideration has been given to multiple imputation \cite{rubin2009multiple}, however, its cost, and the next result made it unsuitable.  
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.3]{figures/ann_params1.png}
+		\includegraphics[scale=0.6]{figures/ann_params2.png}
 	\end{center}
 	
 	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with mean imputation.}
@@ -129,9 +129,11 @@ A first approach used mean imputation. We replaced the missing data with the ave
 
 \end{figure}
 
+As we increase the number of time windows, the accuracy increases. However, this is due to the uniformization of data, as every value that is missing is replaced with the average. As the average is about the same between the testing set and the learning set, we end up with entries who look extremely similar. Still, it is an improvement over the basic case that uses only the RSSI value.  
+
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.3]{figures/ann_params2.png}
+		\includegraphics[scale=0.6]{figures/ann_params1.png}
 	\end{center}
 	
 	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with last observation carry forward imputation.}
@@ -139,17 +141,32 @@ A first approach used mean imputation. We replaced the missing data with the ave
 
 \end{figure}
 
+Last observation carry forward actually produces worse results than the basic case. As we increase the number of time windows used, the accuracy drops even more. It is clear that this is not a suitable approach 
+
 Taking into account the additional information provided by the chain that a window belongs to clearly improves the result. However, the previous approach had a number of issues. For the next set of parameters, we only use two features: the RSSI of the current window, and the length of the chain the window is a part of. This has the strength of avoiding any bias introduced by imputation, while at the same time making almost full use of the additional information provided by the chain. Fig.~\ref{pic:ann_chain} shows the test accuracy for this choice of features.
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.3]{figures/ann_chain.png}
+		\includegraphics[scale=0.5]{figures/ann_chain.png}
 	\end{center}
 	
 	\caption{Test accuracy for ANN when the RSSI and the chain length are used as features.}
 	\label{pic:ann_chain}
 
-\end{figure}     
+\end{figure}
+
+Finally, Fig.~\ref{pic:ann_total} shows a plot with a comparison between the best results for each choice of parameters. Clearly, using just the current window RSSI and the chain length is the best choice. While providing just a minor increase in computation cost by adding just one extra new feature, it is better than the basic case by more than 10%. The parameter set using mean imputation comes close, but still produces inferior results. Furthermore, the use of imputation raises questions regarding the validity of the obtained result.  
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{figures/ann_total.png}
+	\end{center}
+	
+	\caption{Comparison between test accuracy for the best cases for each set of parameters.}
+	\label{pic:ann_total}
+
+\end{figure}
+     
 
 \section{Regressive data}
 

@@ -190,4 +190,13 @@ G.~Cybenko, ``Approximation by superpositions of a sigmoidal function,'' {\em
 D.~Stathakis, ``How many hidden layers and nodes?,'' {\em International Journal
   of Remote Sensing}, vol.~30, no.~8, pp.~2133--2147, 2009.
 
+\bibitem{locf}
+J.~Shao and B.~Zhong, ``Last observation carry-forward and last observation
+  analysis,'' {\em Statistics in Medicine}, vol.~22, no.~15, pp.~2429--2441,
+  2003.
+
+\bibitem{rubin2009multiple}
+D.~B. Rubin, {\em Multiple imputation for nonresponse in surveys}, vol.~307.
+\newblock John Wiley \& Sons, 2009.
+
 \end{thebibliography}

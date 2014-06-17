@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.6.2)  16 JUN 2014 22:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.6.2)  17 JUN 2014 10:21
 entering extended mode
 **C:/D/scoala/teza/thesis_final/Thesis.tex
 (C:/D/scoala/teza/thesis_final/Thesis.tex
@@ -865,39 +865,179 @@ Underfull \vbox (badness 1264) has occurred while \output is active []
  [17]
 [18 <C:/D/scoala/teza/thesis_final/figures/ANN.png>] [19 <C:/D/scoala/teza/thes
 is_final/figures/neuron.png>]
+<figures/ann_simple.png, id=458, 586.8324pt x 442.2924pt>
+File: figures/ann_simple.png Graphic file (type png)
 
-LaTeX Warning: Reference `pic:ann_single' on page 20 undefined on input line 10
-4.
+<use figures/ann_simple.png>
+Package pdftex.def Info: figures/ann_simple.png used on input line 108.
+(pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
+
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 108--109
+ [] 
+ []
 
 
-LaTeX Warning: File `figures/ann_single.png' not found on input line 108.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20] <figures/ann_params2.png, id=474, 586.8324pt x 442.2924pt>
+File: figures/ann_params2.png Graphic file (type png)
+
+<use figures/ann_params2.png>
+Package pdftex.def Info: figures/ann_params2.png used on input line 124.
+(pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
+
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 124--125
+ [] 
+ []
+
+[21 <C:/D/scoala/teza/thesis_final/figures/ann_simple.png>]
+<figures/ann_params1.png, id=483, 586.8324pt x 442.2924pt>
+File: figures/ann_params1.png Graphic file (type png)
+
+<use figures/ann_params1.png>
+Package pdftex.def Info: figures/ann_params1.png used on input line 136.
+(pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
+
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 136--137
+ [] 
+ []
 
 
-! Package pdftex.def Error: File `figures/ann_single.png' not found.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.108 ...aphics[scale=0.3]{figures/ann_single.png}
-                                                  
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.108 ...aphics[scale=0.3]{figures/ann_single.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+[22 <C:/D/scoala/teza/thesis_final/figures/ann_params2.png>]
+<figures/ann_chain.png, id=491, 586.8324pt x 442.2924pt>
+File: figures/ann_chain.png Graphic file (type png)
 
- 
+<use figures/ann_chain.png>
+Package pdftex.def Info: figures/ann_chain.png used on input line 150.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/ann_total.png, id=493, 586.8324pt x 442.2924pt>
+File: figures/ann_total.png Graphic file (type png)
+
+<use figures/ann_total.png>
+Package pdftex.def Info: figures/ann_total.png used on input line 162.
+(pdftex.def)             Requested size: 352.10216pt x 265.37749pt.
+
+Overfull \hbox (6.79951pt too wide) in paragraph at lines 162--163
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23 <C:/D/scoala/teza/thesis_final/figures/ann_params1.png>] [24 <C:/D/scoala/
+teza/thesis_final/figures/ann_chain.png>] [25 <C:/D/scoala/teza/thesis_final/fi
+gures/ann_total.png>] (C:\D\scoala\teza\thesis_final\Chapter4.tex [26
+
+
+
+]
+Chapter 4.
+) [27] (C:\D\scoala\teza\thesis_final\Appendix1.tex [28
+
+
+
+]
+Appendix A.
+) [29] [30
+
+
+] (C:\D\scoala\teza\thesis_final\Thesis.bbl [31
+
+] [32]
+Underfull \hbox (badness 10000) in paragraph at lines 118--120
+[]\T1/cmr/m/n/10 ``Samsung galaxy nexus.'' [][]$\T1/cmtt/m/n/10 http : / / www 
+. samsung . com / us / mobile /$
+ []
+
+
+Underfull \hbox (badness 4303) in paragraph at lines 128--130
+[]\T1/cmr/m/n/10 ``Google app en-gine.'' [][]$\T1/cmtt/m/n/10 https : / / devel
+opers . google . com / appengine/$[][]\T1/cmr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--135
+[]\T1/cmr/m/n/10 ``Android ac-tiv-ity.'' [][]$\T1/cmtt/m/n/10 http : / / develo
+per . android . com / reference /$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--140
+[]\T1/cmr/m/n/10 ``Intentservice.'' [][]$\T1/cmtt/m/n/10 http : / / developer .
+ android . com / reference / android /$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--173
+[]\T1/cmr/m/n/10 ``Neural net-work tool-box.'' [][]$\T1/cmtt/m/n/10 https : / /
+ github . com / IssamLaradji /$
+ []
+
+[33])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
+ [34]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+ (C:\D\scoala\teza\thesis_final\Thesis.aux
+(C:\D\scoala\teza\thesis_final\Chapter1.aux)
+(C:\D\scoala\teza\thesis_final\Chapter2.aux)
+(C:\D\scoala\teza\thesis_final\Chapter3.aux)
+(C:\D\scoala\teza\thesis_final\Chapter4.aux)
+(C:\D\scoala\teza\thesis_final\Appendix1.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package rerunfilecheck Info: File `Thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 2D1DCA4A8BB39DBBB2C0531D1155CA53;2184.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
+ ) 
 Here is how much of TeX's memory you used:
- 9030 strings out of 493706
- 130262 string characters out of 3142172
- 227945 words of memory out of 3000000
- 12036 multiletter control sequences out of 15000+200000
+ 9109 strings out of 493706
+ 131868 string characters out of 3142172
+ 230713 words of memory out of 3000000
+ 12065 multiletter control sequences out of 15000+200000
  26810 words of font info for 68 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  43i,12n,45p,911b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
+tt1000.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecti1000.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
+pen\ec\dpi600\ecbx1200.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
+ur\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts
+\pk\ljfour\jknappen\ec\dpi600\ecrm2488.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2
+.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1200.pk> <C:\Users\Teo\AppData\Local\
+MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\Teo\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1000.pk> <C:\Users\Te
+o\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\
+Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx2488.
+pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
+css1000.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\
+dpi600\ecss0900.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
+ppen\ec\dpi600\ecss1728.pk> <C:\Users\Teo\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
+our\jknappen\ec\dpi600\ecsx2074.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb>
+Output written on Thesis.pdf (46 pages, 1004147 bytes).
+PDF statistics:
+ 1188 PDF objects out of 1200 (max. 8388607)
+ 139 named destinations out of 1000 (max. 500000)
+ 353 words of extra memory for PDF output out of 10000 (max. 10000000)
+
