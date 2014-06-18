@@ -30,7 +30,9 @@
 \contentsline {section}{\numberline {3.4}Naive Bayes}{29}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Theoretical overview}{29}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Results}{31}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Comparison between the algorithms}{31}{section.3.5}
-\contentsline {chapter}{\numberline {4}Conclusions}{33}{chapter.4}
-\contentsline {chapter}{\numberline {A}Stuff}{35}{appendix.A}
-\contentsline {chapter}{Bibliography}{37}{appendix.A}
+\contentsline {section}{\numberline {3.5}Algorithms comparison and discussion}{32}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Algorithm score}{32}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Algorithm performance}{34}{subsection.3.5.2}
+\contentsline {chapter}{\numberline {4}Conclusions}{37}{chapter.4}
+\contentsline {chapter}{\numberline {A}Stuff}{39}{appendix.A}
+\contentsline {chapter}{Bibliography}{41}{appendix.A}

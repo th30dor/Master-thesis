@@ -1,1 +1,13 @@
 \chapter{Conclusions}
+
+The thesis aimed to determine a method through which co-location can be inferred, using bluetooth signals coming from mobile phones. In order to achieve this, we provided three volunteers with mobile phones. On the phones, for this project, we installed two apps: the SensibleDTU data collector app, and the FriendFinder app. The latter was specifically developed for this project. 
+
+With the help of the two apps we collected two types of data, which we then combined to create a unitary set. It was further split into time windows, which were aggregated into chains. This constituted the basis on which three machine learning algorithms were tested: artificial neural networks, logistic regression and Naive Bayes. The algorithms tried to classify if a given Bluetooth signal signifies co-location or not. 
+
+After a theoretical overview for each algorithm was provided, they were tested for accuracy and computational performance. The testing for accuracy was done through k-fold validation and repeated random sub-sampling validation. The one for computational performance was done by measuring the execution time on a test machine. For each algorithm a number of different parameters and features was used. 
+
+The accuracy testing revealed that all three algorithms provide similar test scores, the choice of the algorithm having little impact overall. What proved to be crucial to how well the algorithms classify was the choice of the features used. And here we have a clear winner. The best results were obtained by using two features: the measured Bluetooth RSSI and the length of the chain the time window is part of. 
+
+When testing for computational performance, the neural networks lagged behind, providing the highest complexity and longest execution times. Logistic regression and Naive Bayes performed far better, the latter two having similar results. 
+
+Overall, both logistic regression and Naive Bayes provide adequate results, and are strong choices as solutions for the problems raised by this thesis. 

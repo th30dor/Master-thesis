@@ -291,6 +291,91 @@ The parameters are estimated through training, using maximum likelihood \cite{zh
 
 \subsection{Results}
 
-We used the Scikit-learn \cite{scikit-learn} implementation for the Naive Bayes classifier. Due to the continuous nature of the features, we used the Gaussian distribution. For testing purposes we used the same sets of parameters as before. The results can be seen in Fig. \ref{pic:logic_tot}.
+We used the Scikit-learn \cite{scikit-learn} implementation for the Naive Bayes classifier. Due to the continuous nature of the features, we used the Gaussian distribution. For testing purposes we used the same sets of parameters as before. The results can be seen in Fig. \ref{pic:naive_tot}.
 
-\section {Comparison between the algorithms}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.7]{figures/naive_tot.png}
+	\end{center}
+	
+	\caption{Testing results for Naive Bayes.}
+	\label{pic:naive_tot}
+
+\end{figure}
+
+We obtain an accuracy of a bit over 84\% for the basic case, where only the Bluetooth RSSI has been used. We then move to testing with multiple time windows, as it has been described in the sections above.
+
+The variation with last observation carry forward has a terrible result, dropping a staggering 10\% compared to the base case, to a 75.4\%. Increasing the number of time windows used further deteriorates the result, reaching a low of 66.5\%. As we have come to expect, this choice of parameters does not provide a usable result.
+
+Using mean imputation, we obtain a small improvement over the base case, but not right from the start. When only one extra time window is used, the result is slightly worse. By going to two windows we obtain a better 85.9\% score, while further increasing the number of windows does not provide a significant improvement. 
+
+The last set of parameters used, RSSI and chain length provide the best results, with a score of 92\%, a marked improvement over the other choices.  
+
+\section {Algorithms comparison and discussion}
+
+We compare the three algorithms from two perspectives: results and performance.
+
+\subsection{Algorithm score}
+
+Fig. \ref{pic:total_tot} shows an overview of the results obtained using the three algorithms. For each algorithm, and for each major version of parameters used (base, last one carry forward imputation, mean imputation and chain length), the best variation was selected. This includes, for example, the appropriate number of neurons in the hidden layer for ANNs, or the extra number of time windows used. 
+
+For the base case, we obtain similar scores across the board, with a slight advantage for Naive Bayes. This can be explained by the straight-forward manner of the algorithm in comparison with the other two, in combination with the simplicity of the feature set, where only the RSSI was used. The problem simply devolves into a threshold situation, where RSSIs over a certain value have a higher probability of being classified as co-location. Furthermore, the \textit{naive} assumption of the algorithm becomes correct, as we only used one feature.
+
+When using imputation, the results vary between the different sets of parameters and algorithms. However, one thing becomes clear: last observation carry forward always produces subpar results, even when compared to the base case. The only case in which it comes close is ANN, and even then it does not surpass it. 
+
+Mean imputation produces better results, always surpassing the base case for every algorithm. Between the three, ANN produces the best improvement and also holds the highest test score. And if we were to stop our analysis here, ANN using mean imputation would be the most accurate combination.  
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{figures/total_tot.png}
+	\end{center}
+	
+	\caption{Summary of results obtained across all three algorithms.}
+	\label{pic:total_tot}
+
+\end{figure}
+
+However, that is not the case, as the best results were obtained, every time, by using the length of the chain as a feature, in addition to the RSSI. The obtained test scores are extremely similar for all the algorithms, hovering around the value of 92\%. This brings to light the notion that not only Bluetooth RSSI matters, but also the length of time for which we can maintain a Bluetooth connection, with longer times being indicative of the presence of co-location.  
+
+When taking into consideration just the base case and the best case(chain length), a pattern becomes obvious: the choice of algorithm does not matter. This is proved by the almost identical test scores for all three algorithms. Another influence on the similar scores obtained by the classifiers is the small number of features used. Under these circumstances, the features that are used become extremely important: this is why the results obtained with artificially created data through imputation vary so much.
+
+Using the set of features indicated here, from an accuracy point of view, the choice of algorithm does not matter. 
+
+\subsection{Algorithm performance}
+
+Taking into account the test score results obtained, we analysed the performance of only two cases for each algorithm: the base case and the case that also uses the chain length as a feature. When talking about computation complexity for classifiers, what interests us is the training complexity, as once the training is complete, a classification's complexity is linear with the number of features used: $O(n)$ for $n$ features. For the ANN algorithm, the number of \textit{neurons} in the hidden layer has been chosen such that it provides the best accuracy. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{figures/time1_tot.png}
+	\end{center}
+	
+	\caption{Time spent only on processor.}
+	\label{pic:time1_tot}
+
+\end{figure}
+
+Naive Bayes' training also has an $O(n)$ complexity for $n$ features. For the other two algorithms, as we saw before, training is done iteratively, until the solutions converge, or a maximum number of iterations is reached. For these reasons, in order to analyse the performance, we monitored the execution time.
+
+Fig. \ref{pic:time1_tot} details the actual computation time or the time the program spent on the processor doing just mathematical operations, while Fig. \ref{pic:time2_tot} details a full execution including the time spent reading data from the disk. 
+
+One test case for an algorithm represents a loop with 30 iterations. In each iteration, the algorithm is trained once. For every algorithm, 1000 test cases have been executed and the results averaged, obtaining the numbers appearing in Fig. \ref{pic:time1_tot} and Fig. \ref{pic:time2_tot}. The measurements have been done with the \textit{time} command available on most UNIX/LINUX systems. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{figures/time2_tot.png}
+	\end{center}
+	
+	\caption{Full execution time for algorithms.}
+	\label{pic:time2_tot}
+
+\end{figure}
+
+Let us first discuss the time spent only on the processor. When using only measured Bluetooth RSSI, the results are very similar, with only a slight increase for ANN. This can be explained by simple form the classifiers take when using only one feature. Obviously, when we use two features, we will observe a time increase across the board. What is interesting is that the ANN execution time increases significantly compared to the other two. Again, this is not unexpected, as the theory behind the algorithms has shown that ANN is the more complex one. Another reason for the time increase is the increase in the number of \textit{neurons} in the hidden layer. This is required in order to obtain the same accuracy as the other two algorithms.
+
+The full execution time for the algorithms tells a similar story. The same trend applies, where the logistic regression and Naive Bayes are faster than the neural network. However differences are more pronounced. For the base case, while before, the ANN was only slightly slower than the other two, now it is almost 3 times as slow. The structures needed to be created and allocated in order to hold an ANN in memory play a big part in this difference, even if just one feature is used. 
+
+Also, the time difference between the base case and the one using chain length is significantly more higher. While the increase in the number of features certainly has an effect on this difference, it is eclipsed by the data processing part. Extracting just the RSSI of a known time window is a relatively cheap task, while parsing an entire chain to determine its length comes with an extremely high cost. 
+
+From a complexity point of view, we have a clear result. Both logistic regression and Naive Bayes have similar results, with both being better than the ANN. 
+   
