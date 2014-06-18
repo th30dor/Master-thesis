@@ -176,9 +176,9 @@ Across the entire suite of tests, the variation in the number of \textit{neurons
 
 \section{Logistic regression}
 
-In order to meet the objective stated at the beginning of this thesis, we look at the measured Bluetooth RSSI, and some adjacent data, and we try to decide if we have co-location. This can be expressed as the output(response) variable is depending on the input(explanatory) variables  \ref{logmodel}. This immediately leads to the idea of regression. The most basic example of this is the linear regression. However, linear regression has an output variable that is continuous, which is unsuitable for the problem raised by this thesis.
+In order to meet the objective stated at the beginning of this thesis, we look at the measured Bluetooth RSSI, and some adjacent data, and we try to decide if we have co-location. This can be expressed as the output(response) variable is depending, in some form, on the input(explanatory) variables  \ref{logmodel}. This immediately leads to the idea of regression. The most basic example of this is the linear regression. However, linear regression has an output variable that is continuous, which is unsuitable for the problem raised by this thesis.
 
-Indeed, here we have a dichotomous outcome. Given a set of measurements, there either is or isn't co-location. For these types of situation, a different type of regression is required, namely logistic regression. 
+Indeed, here we have a dichotomous outcome. Given a set of measurements, there either is or there isn't co-location. For these types of situation, a different type of regression is required, namely logistic regression. 
 
 \subsection{Theoretical overview}
 
@@ -206,27 +206,28 @@ Fig.~\ref{pic:logit} shows the plot of the logistic function. It has several att
 
 \end{figure}
 
-Based on \cite{kleinbaum2010logistic,logmodel,statistics}: for a set of measurements, the logistic model computes the probability that they belong to either one of the categories. We wish to model the dependence between $X$, which consists of a set of variables $X = \lbrace X_1,X_2,X_3,... \rbrace$ and $p(X) = Pr(Y \vert X)$, where $Y$ represents the classifier labels. Using the above logistic function, we can write:
+Based on \cite{kleinbaum2010logistic,logmodel,statistics}: for a set of measurements, the logistic model computes the probability that they belong to either one of the categories. We wish to model the dependence between $X$, which consists of a set of variables $X = \lbrace X_1,X_2,X_3,... \rbrace $, which express the features, and $p(X) = Pr(Y \vert X)$, where $Y$ represents the classifier labels. Using the above logistic function, we can write:
 \begin{equation*}
 p(X) = \frac{1}{1+e^{-X}}
 \end{equation*}
 
-But $X$ can be written as a linear combination of the input variables: $X = \beta_0 + \beta_1X_1 + \beta_2X_2 ...$. Replacing in the above equation we obtain:
+But $X$ can be written as a linear combination of the input variables: $X = \beta_0 + \beta_1X_1 + \beta_2X_2 ... $. Replacing in the above equation we obtain:
 \begin{equation*}
 p(X) = \frac{1}{1+e^{-(\beta_0 + \beta_1X_1 + \beta_2X_2 ...)}}
 \end{equation*}
 
-We also need to compute the \textit{logit}, the inverse of the above function:
+We also need to compute the \textit{logit}, the inverse of the above function, which looks very much like a regular linear regression:
 \begin{equation*}
 ln\frac{p(X)}{1 - p(X)} = \beta_0 + \beta_1X_1 + \beta_2X_2 ...
 \end{equation*}
 
-All that is left now is to estimate the unknown quantities $\beta_0, \beta_1, \beta_2...$. This is usually done with maximum likelihood estimation \cite{menard2009logistic}. Intuitively, the method looks for estimates of $\beta_0, \beta_1, \beta_2...$, so that the results obtained using those estimates come very close (or as close as they can) to the expected result. The maximum likelihood estimation makes use of the likelihood function:
+All that is left now is to estimate the unknown quantities $\beta_0, \beta_1, \beta_2...$, through the process of training. This is usually done with maximum likelihood estimation \cite{menard2009logistic}. Intuitively, the method looks for estimates of $\beta_0, \beta_1, \beta_2...$, so that the results obtained using those estimates come very close (or as close as they can) to the expected result. The maximum likelihood estimation makes use of the likelihood function:
 
 \begin{equation*}
 l(\beta) = \prod_ip(X_i)[1 - p(X_i)]
-\end{equation*} 
-Where the first term corresponds to cases that belong to one category, and the second to cases that belong to the other category. The estimations for $\beta_0, \beta_1, \beta_2...$ are chosen so that the above function is maximized. Solving the above equation entails the use of iterative methods \cite{logmodel}, and is outside the scope of this paper.
+\end{equation*}
+ 
+Where the first term corresponds to cases that belong to one category, and the second to cases that belong to the other category. The estimations for $\beta_0, \beta_1, \beta_2...$ are chosen so that the above function is maximized. Solving the above equation entails the use of computationally intensive iterative methods \cite{logmodel}, and is outside the scope of this paper. Once discovered, the estimations are plugged back in the logit, and the model can be used for classification.
  
 \subsection{Results}
 
@@ -254,8 +255,42 @@ Although the results obtained using mean imputation are usable, the fact that th
 
 \section{Naive Bayes}
 
+Given that the two algorithms discussed above outputted similar results in their best cases, we considered using a more simple algorithm to check if we obtain the same results. Naive Bayes was the choice.
+
 \subsection{Theoretical overview}
 
+Naive Bayes is a probabilistic classifier \cite{forty}. At its core, the Naive Bayes classifier uses Bayes theorem:
+
+\begin{equation*}
+p(Y \vert X) = \frac{p(Y)p(X \vert Y)}{p(X)}
+\end{equation*}
+
+In case of the classifier, $Y$ is a variable over the classes the data needs to be classified in, where $X$ is a variable representing the features. $X$ can also be replaced by multiple variables expressing the presence of multiple features: $X_1,X_2,X_3,..., X_n $. Based on \cite{forty}, replacing this in the theorem we obtain:
+
+\begin{equation*}
+p(Y\vert X_1,X_2,X_3,..., X_n) = \frac{p(Y)p(X_1,X_2,X_3,..., X_n\vert Y)}{p(X_1,X_2,X_3,..., X_n)}
+\end{equation*}
+
+One thing to mention here is that when used for classification by comparing values, for the above model, the item located at the denominator is constant (that is, it does not depend on $Y$), and does not need to be computed. 
+
+And here, the \textit{naive} part of the classifier comes in. We assume that the feature variables are independent (the assumption is obviously wrong, however, it has been shown to have good results in practice \cite{rish2001empirical}). Thus we can write:
+
+\begin{equation*}
+p(X_1,X_2,X_3,..., X_n\vert Y) = \prod_{i=1}^np(X_i \vert Y)
+\end{equation*}
+
+Replacing in the equation above, we obtain:
+
+\begin{equation*}
+p(Y\vert X_1,X_2,X_3,..., X_n) = \frac{p(Y)\prod \limits_{i=1}^np(X_i \vert Y)}{p(X_1,X_2,X_3,..., X_n)}
+\end{equation*}
+
+This gives us the model. It computes the probabilities that a certain feature vector, representing an object, belongs to either category. While the probabilities calculated are not correct, the relation between them is valid. That is, if an object to be classified has a higher probability of belonging to class $A$ compared to the probability of belonging to class $B$, than that object probably belongs to class $A$. 
+
+The parameters are estimated through training, using maximum likelihood \cite{zhang2004optimality}. However, depending on the type of data we wish to classify, we need to assume a specific feature distribution, usually called \textit{event model} \cite{mccallum1998comparison}. For continuous data, the Gaussian distribution is usually used, while for discrete features Bernoulli and multinomial distributions are used \cite{mccallum1998comparison}.
+
 \subsection{Results}
+
+We used the Scikit-learn \cite{scikit-learn} implementation for the Naive Bayes classifier. Due to the continuous nature of the features, we used the Gaussian distribution. For testing purposes we used the same sets of parameters as before. The results can be seen in Fig. \ref{pic:logic_tot}.
 
 \section {Comparison between the algorithms}
