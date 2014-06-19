@@ -6,7 +6,7 @@ Each phone came with two apps. The first recorded regularly a multitude of infor
 
 This gave rise to two types of data. First, a continuous stream of regular measurements from the first app, and punctual messages from the second app. Below we will go into more detail about how exactly the two types of data look, how are they gathered and finally, how the two are combined to create a unitary set which serves as a basis for the machine learning algorithms.
 
-One last thing to mention is that the volunteers were not chosen completely random, but in such a way that guaranteed the existence of both types of data. On the one hand, the volunteers are all studying for a computer science major at DTU. This ensured that the students have found themselves in each others vicinity at some point during the data gathering period. Also, all three volunteers live in different places. This is important because house-mates or couples living together will introduce a very large amount of data that is very specific, while we are looking to generalize as much as possible.
+One last thing to mention is that the volunteers were not chosen completely random, but in such a way that guaranteed the existence of both types of data. On the one hand, the volunteers are all studying for a computer science major at DTU. This ensured that the students have found themselves in each others vicinity at some point during the data gathering period. Also, all three volunteers live in different places. This is important because house-mates or couples living together will introduce a very large amount of biased data.
 On the other hand, we needed to make sure that eventually, some volunteers are in each other's physical proximity. This was resolved by the fact that the volunteers had a course together. This ensured that at least once per week, usually two because of group work, the volunteers met.
 
 \section{Bluetooth}
@@ -28,7 +28,7 @@ As the app, FriendFinder, is made for the Android operating system, it is implem
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.2]{figures/galaxy-nexus-battery.png}
+		\includegraphics[scale=0.2]{figures/ff.png}
 	\end{center}
 	
 	\caption{FriendFinder app}.
@@ -52,7 +52,7 @@ The app contains a single screen (the one showed in Fig \ref{pic:ff_prtscr}), wh
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.2]{figures/galaxy-nexus-battery.png}
+		\includegraphics[scale=0.2]{figures/ff_conf.png}
 	\end{center}
 	
 	\caption{Confirmation message on the FriendFinder app}.
@@ -64,7 +64,7 @@ For the data to reach the database on the Google App Engine, an internet connect
 
 \begin{itemize}
   \item A first function is to store the data locally, until an internet connection is established.
-  \item the second, and most important, is to check periodically for an internet connections. Once an internet connection has been established, all the data is sent to the Google App Engine. The app checks every one minute for internet access. This allows for a relatively fast updating of the database, while at the same time keeping the resource use at a level that does not impede the normal functioning of the phone.
+  \item The second, and most important, is to check periodically for an internet connection. Once an internet connection has been established, all the data is sent to the Google App Engine. The app checks every one minute for internet access. This allows for relatively fast updating of the database, while at the same time keeping the resource use at a level that does not impede the normal functioning of the phone.
 \end{itemize}
 
 The data is stored locally in RAM of the phone (the volatile memory). This is made possible by the relatively small size of the data being saved ( the names of the two people involved, and an ID object that also serves as a timestamp) and the memory capacity of the phone ( approximately 700 MB of RAM). However, this has the disadvantage of being vulnerable to the phone turning off due to lack of battery. The volunteers have been made aware of this fact. 
@@ -82,7 +82,7 @@ Once a button with the name of a person is pressed, the data that is saved on th
 \end{verbatim}
 
 \begin{description}
-  \item[ID] It has a double role. First, the ID is a unique identifier, used for differentiating between multiple entries, as well as for various database operations. This field is required by the Google App Engine. Secondly, the ID also plays the role of the timestamp, used in future computations. While there are valid concerns that the ID might not be unique, due to two people pressing the button at the same time, the fact that the timestamp also includes the millisecond, and the fact that there are only three participants in the project results in an extremely low probability of identical timestamps. Obviously, the timestamp corresponds to the moment the button was pressed, and not the moment the data was sent to the database.  
+  \item[ID] It has a double role. First, the ID is a unique identifier, used for differentiating between multiple entries, and for various database operations. This field is required by the Google App Engine. Secondly, the ID plays the role of the timestamp, used in future computations. While there are valid concerns that the ID might not be unique, due to two people pressing the button at the same time, the fact that the timestamp also includes the millisecond, and the fact that there are only three participants in the project results in an extremely low probability of identical timestamps. Obviously, the timestamp corresponds to the moment the button was pressed, and not the moment the data was sent to the database.  
   \item[owner] This field refers to the owner of the phone, which indicates the person that has made the observation.
   \item[target] This field names the person that has been observed by the owner.
 \end{description}
@@ -106,7 +106,7 @@ Fig. \ref{pic:dataviewer} shows an example of how the data looks, with the cavea
 
 \subsection{Project overview}
  
- SensibleDTU is the implementation of a large scale study aimed at observing the various interchanges that take place between humans from a social and communications point of view. It aims to collect data on a large group of individuals, most of them students at DTU (Danish Technical University). The collected data consists of, among others, social relations and the networks that form as a result, geographical locations, and, of special interest to this thesis, face-to-face interactions. It does this by using a wide variety of sources, such as questionnaires, the wireless internet on campus, and mobile sensing through smartphones that were handed out to participants. A part of the data gathered through this last method is used in this thesis.
+ SensibleDTU is the implementation of a large scale study aimed at observing the various interchanges that take place between humans from a social and communications point of view. It aims to collect data on a large group of individuals, most of them students at DTU (Danish Technical University). The collected data consists of social relations and the networks that form as a result, geographical locations, and, of special interest to this thesis, face-to-face interactions. It does this by using a wide variety of sources, such as questionnaires, the wireless internet on campus, and mobile sensing through smartphones that were handed out to participants. A part of the data gathered through this last method is used in this thesis.
  
 The smartphone data gathering is done by using a data collection app, based on the Funf framework \cite{funf}. This data is saved locally on the phone, and it is sent to a secure database server when the app detects the presence of an internet connection. Due to its sensitive nature, great care has been taken to ensure the privacy, security and anonymity of the saved data. Having said that, the three volunteers that participated in the data gathering for this thesis have agreed to the de-anonymization of their Bluetooth information, as it was required in order to merge the two sets of data gathered. 
  
@@ -154,7 +154,7 @@ The above notion of tagging each timestamp now can be resolved by tagging each t
 
 In tagging the windows, we have used the notion of measurement chain. We define it as a continuous, ordered series of one or more time windows, where we have a RSSI value measured for every window in the chain. For example, in Fig. \ref{pic:value_chain} we have three distinct measurement chains: the first one with two windows, the second one with only one window, and the last one with six windows.
 
-We tag a window \textit{w} with \textit{yes} if a FriendFinder app confirmation has been done in any window belonging to the chain that window \textit{w} also belongs, or the window immediately before, even if that window has no measurement. This last part is done to make sure that confirmations done in between Bluetooth probe measurements are not lost. Fig. \ref{pic:tag_yes} exemplifies how windows are tagged with \textit{yes}. 
+We tag a window \textit{w} with \textit{yes} if a FriendFinder app confirmation has been done in any window belonging to the chain that window \textit{w} also belongs to. We also tag it with \textit{yes} if confirmation has been done to the window immediately before the chain starts, even if that window has no measurement. This last part is done to make sure that confirmations done in between Bluetooth probe measurements are not lost. Fig. \ref{pic:tag_yes} exemplifies how windows are tagged with \textit{yes}. 
 
 \begin{figure}[h]
 	\begin{center}
@@ -170,7 +170,7 @@ After all the confirmations are taken into account and all the relevant chains a
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.6]{figures/division.png}
+		\includegraphics[scale=0.5]{figures/division.png}
 	\end{center}
 	
 	\caption{The partitioning of the entries by \textit{yes} and \textit{no} tags.}

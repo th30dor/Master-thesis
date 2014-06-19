@@ -7,31 +7,30 @@ A level-1 auxiliary file: Appendix1.aux
 The style file: ieeetr.bst
 Database file #1: References.bib
 Warning--entry type for "android" isn't style-file defined
---line 339 of file References.bib
+--line 335 of file References.bib
 Warning--entry type for "jandroid" isn't style-file defined
---line 347 of file References.bib
+--line 343 of file References.bib
 Warning--entry type for "googleapp" isn't style-file defined
---line 355 of file References.bib
+--line 351 of file References.bib
 Warning--entry type for "sensibledtu" isn't style-file defined
---line 363 of file References.bib
+--line 359 of file References.bib
 Warning--entry type for "nexus" isn't style-file defined
---line 371 of file References.bib
+--line 367 of file References.bib
 Warning--entry type for "activity" isn't style-file defined
---line 379 of file References.bib
+--line 375 of file References.bib
 Warning--entry type for "intentservice" isn't style-file defined
---line 387 of file References.bib
+--line 383 of file References.bib
 Warning--entry type for "funf" isn't style-file defined
---line 395 of file References.bib
+--line 391 of file References.bib
 Warning--entry type for "issam" isn't style-file defined
---line 467 of file References.bib
+--line 463 of file References.bib
 Warning--entry type for "bloae" isn't style-file defined
---line 667 of file References.bib
-I was expecting a `,' or a `}'---line 1018 of file References.bib
+--line 661 of file References.bib
+I was expecting a `,' or a `}'---line 1012 of file References.bib
  :    
  :    year            = {2009},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Pentland"
 Too many commas in name 1 of "Fredrik Liljeros, Christofer R. Edling, Luís A. Nunes Amaral, H. Eugene Stanley, Yvonne Åberg" for entry human_sex
 while executing---line 963 of file ieeetr.bst
 Too many commas in name 1 of "Fredrik Liljeros, Christofer R. Edling, Luís A. Nunes Amaral, H. Eugene Stanley, Yvonne Åberg" for entry human_sex

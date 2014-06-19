@@ -27,10 +27,8 @@ In \cite{wifi}, \textit{ Kjærgaard and Nurmi} use the WiFi capabilities on smar
 \section{Objective}
 
 Given a bluetooth RSSI between two phones, the purpose of this paper is to indicate a method which reliably and accurately determines the existence of pairwise co-location between the people carrying the two phones.
-
-Reliability refers to the fact that multiple tries with the same input, and constant settings ( same machine learning algorithm, same parameters and same training data), will always yield exactly the same result. While accuracy refers to the precision of the algorithm during testing, or how close to the expected result it is. 
  
-This inference is achieved by applying and analysing multiple machine learning algorithms on a data set consisting of two main parts:
+The inference of co-location is achieved by applying and analysing multiple machine learning algorithms on a data set consisting of two main parts:
 \begin{itemize}
   \item Data automatically recorded by the SensibleDTU data collector app \cite{Stopczynski}
   \item Ground truth data obtained by the test subjects by interacting with the FriendFinder app
@@ -40,16 +38,16 @@ For each machine learning algorithm the parameter configuration which yields the
 
 \section{Scope and limitations}
 
-The paper analyses the data obtained from three test subjects. Each subject has been given the same phone model, Samsung Galaxy Nexus. The app built for the phones, FriendFinder, has a purely functional purpose. As such, little to no consideration has been given to the style, theme or design of the app. Fig \ref{pic:ff_prtscr} shows the app, and while fir for purpose, it is not very aesthetic.
+The paper analyses the data obtained from three test subjects. Each subject has been given the same phone model, Samsung Galaxy Nexus. The app built for the phones, FriendFinder, has a purely functional purpose. As such, little to no consideration has been given to the style, theme or design of the app. Fig \ref{pic:ff_prtscr} shows the app, and while fit for purpose, it is not very aesthetic.
 
-While considerable testing has been done with regards to the algorithm parameters, the machine learning algorithms list is by no means exhaustive. There are three main algorithms: Naive Bayes, Neural Networks, and Recursive learning, and an explanation on why a fourth, Hidden Markov Model, is unsuitable for this type of data. 
+While considerable testing has been done with regards to the algorithm parameters, the machine learning algorithms used are by no means exhaustive. There are three main algorithms: Naive Bayes, neural networks, and logistic regression.
 
-When analysing data, we only look at the bluetooth RSSI value, and data derived directly while measuring it. For example, given that measurements are taken every five minutes, we at some point look at the length of an uninterrupted string of measurements, or at the measurements taken before and after (if possible) a specific measurement. GPS traces, phone records, infrared sensors, or facebook/email information are not taken into consideration.
+When analysing data, we only look at the bluetooth RSSI value, and data derived directly while measuring it. For example, given that measurements are taken every five minutes, we at some point look at the number of uninterrupted measurements, or at the measurements taken before and after (if possible) a specific measurement. GPS traces, phone records, infrared sensors, or facebook/email information are not taken into consideration.
 
 \section{Thesis Outline}
 
 The thesis begins with this introduction, which gives an overview of the general theme of the project. The objectives, scope and limitations and thesis outline are all self-defining. 
 
-It continues with a section which describes the data acquisition process and the methodology used to obtain the data from the SensibleDTU database. The section also describes the FriendFinder app, as well as its implementation.
+The paper continues with a section which describes the data acquisition process and the methodology used to obtain the data from the SensibleDTU database. The section also describes the FriendFinder app, as well as its implementation.
 
 Next, the machine learning algorithms are presented. For each algorithm a theoretical overview is given. The implementation details are discussed, followed by the results obtained by applying it to the data. At the end of this chapter, we do a comparative analysis between the algorithms, followed by the last section, the conclusions, where we will give the final results and recommendations.

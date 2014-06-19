@@ -2,13 +2,13 @@
 
 With the data extracted and formatted in suitable manner, as described in the previous chapter, we move on to the main part of the thesis. Given a set of consecutive Bluetooth RSSI measurements, \textit{can we infer co-location?}; and if yes, what is the best way of doing it? 
 
-One way of answering these questions is to simply set a threshold, and split the dataset into two parts: the ones that are above the threshold indicate co-location, while the other do not. That is exactly what \textit{Sekara,Lehmann} did in \cite{vedran}, with convincing results. They set the threshold to \textit{ -80 dBm}. 
+One way of answering these questions is to simply set a threshold, and split the dataset into two parts: the ones that are above the threshold indicate co-location, while the others do not. That is exactly what \textit{Sekara and Lehmann} did in \cite{vedran}, with convincing results. They set the threshold to \textit{ -80 dBm}. 
 
-On a similar note, we average our two types of data, the ones tagged \textit{yes} and \textit{no}, and we obtain an average of \textit{-64 dBm} for the ones tagged \textit{yes} and an average of {-82 dBm} for the ones tagged \textit{no}. From this result, one can easily see the similarity between the threshold in \textit{Sekara,Lehmann}'s work and the values obtained through this thesis's data. 
+On a similar note, we average our two types of data, the ones tagged \textit{yes} and \textit{no}, and we obtain an average of \textit{-64 dBm} for the ones tagged \textit{yes} and an average of \textit{-82 dBm} for the ones tagged \textit{no}. From this result, one can easily see the similarity between the threshold in \textit{Sekara and Lehmann}'s work and the values obtained through this thesis's data. 
 
-The above method can successfully be used under any type of measurements. However, it does not take advantage of the additional information that our method of data gathering has provided, such as temporal information, or the significance of continuous measurements. Below we propose three methods of inferring pairwise co-location in the form of three machine learning algorithms. For each one we will provide a theoretical overview and implementation details, followed by a discussion of the results. The chapter will end with a comparison between the three algorithms where results, ease of use and performance will be taken into consideration.
+The above method can successfully be used under any type of measurement that outputs the RSSI. However, it does not take advantage of the additional information that our method of data gathering has provided, such as temporal information, or the significance of continuous measurements. Below we propose three methods of inferring pairwise co-location in the form of three machine learning algorithms. For each one we will provide a theoretical overview and implementation details, followed by a discussion of the results. The chapter will end with a comparison between the three algorithms where results and computational performance will be taken into consideration.
 
-In Section~\ref{sec:data_merger} we split our data into time windows. At any one point during the execution of the algorithms, we will be referring to a single time window, the one for which we want to infer co-location. Of course, additional parameters and features will be used, but even if not specified, every run of any algorithm described below will include, even if not specifically noted, at least the RSSI of a single time window, the one mentioned at the beginning of this paragraph. 
+In Section~\ref{sec:data_merger} we split our data into time windows. At any one point during the execution of the algorithms, we will be referring to a single time window, $w$, for which we want to infer co-location. Of course, additional parameters and features will be used, but even if not specified, every run of any algorithm described below will include as a feature at least the RSSI of $w$.
  
 While the parameters and the inputs used differ from one algorithm to another, one thing that remains constant across all of them is the testing methodology, described in the following section.
 
@@ -21,7 +21,7 @@ In order to test the accuracy of the algorithms, we use cross-validation, a well
   \item For random sub-sampling validation, the dataset is partitioned into two sets. The entries are randomly assigned to one of the sets based on the proportion established at the beginning. For this type of validation, the test has been repeated 100 times, and the results averaged.   
 \end{itemize}
 
-During the execution of the tests, both k-fold validation and repeated random sub-sampling validation output extremely similar results, most of the time the results having less than $0.5\%$ difference between them. For this reason, when presenting an algorithm score, that score will be the average of the two methods. 
+During the execution of the tests, both k-fold validation and repeated random sub-sampling validation output extremely similar results. For this reason, when presenting an algorithm score, that score will be the average of the two methods. 
 
 
 \section{Neural Networks}
@@ -147,7 +147,7 @@ As we increase the number of time windows, for mean imputation, the accuracy inc
 
 Running the algorithm with a last observation carry forward strategy for replacing missing values produces negative results. Even taking into consideration the best result of this set, obtained with only one extra time window, we are still below or close to the score of the basic set.  As we increase the number of time windows used, the accuracy drops markedly, with an almost 7\% jump downwards between one and two extra time windows, and a 4\% drop between two and three extra time windows. This choice of parameters is unsuitable for this algorithm.    
 
-Taking into account the additional information provided by the chain that a window belongs to can improve the result. However, the previous approach had a number of issues, related to missing values, and the choice of how many extra time bins should be taken into consideration. For the next set of parameters, we only use two features: the RSSI of the current window, and the length of the chain the window is a part of. This has the strength of avoiding any bias introduced by imputation, while at the same time making almost full use of the additional information provided by the chain. Fig.~\ref{pic:ann_chain} shows the test accuracy for this choice of features.
+The additional information provided by the chain can improve the result. However, the previous approach had a number of issues, related to missing values, and the choice of how many extra time bins should be taken into consideration. For the next set of parameters, we only use two features: the RSSI of the current window, and the length of the chain the window is a part of. This has the strength of avoiding any bias introduced by imputation, while at the same time making almost full use of the additional information provided by the chain. Fig.~\ref{pic:ann_chain} shows the test accuracy for this choice of features.
 
 \begin{figure}[h]
 	\begin{center}
@@ -176,7 +176,7 @@ Across the entire suite of tests, the variation in the number of \textit{neurons
 
 \section{Logistic regression}
 
-In order to meet the objective stated at the beginning of this thesis, we look at the measured Bluetooth RSSI, and some adjacent data, and we try to decide if we have co-location. This can be expressed as the output(response) variable is depending, in some form, on the input(explanatory) variables  \ref{logmodel}. This immediately leads to the idea of regression. The most basic example of this is the linear regression. However, linear regression has an output variable that is continuous, which is unsuitable for the problem raised by this thesis.
+In order to meet the objective stated at the beginning of this thesis, we look at the measured Bluetooth RSSI, and some adjacent data, and we try to decide if we have co-location. This can be expressed as the output(response) variable is depending, in some form, on the input(explanatory) variables \cite{logmodel1}. This immediately leads to the idea of regression. The most basic example of this is the linear regression. However, linear regression has an output variable that is continuous, which is unsuitable for the problem raised by this thesis.
 
 Indeed, here we have a dichotomous outcome. Given a set of measurements, there either is or there isn't co-location. For these types of situation, a different type of regression is required, namely logistic regression. 
 
@@ -189,7 +189,7 @@ The foundation of the logistic regression consists of the logistic function:
 f(y) = \frac{1}{1+e^{-y}}
 \end{equation*}
 
-Fig.~\ref{pic:logit} shows the plot of the logistic function. It has several attractive qualities. Based on \ref{kleinbaum2010logistic}:
+Fig.~\ref{pic:logit} shows the plot of the logistic function. It has several attractive qualities. Based on \cite{kleinbaum2010logistic}:
 
 \begin{itemize}
   \item Its output values are between $0$ and $1$. Thus it can easily map probabilities, which is the result of the logistic model.
@@ -206,7 +206,7 @@ Fig.~\ref{pic:logit} shows the plot of the logistic function. It has several att
 
 \end{figure}
 
-Based on \cite{kleinbaum2010logistic,logmodel,statistics}: for a set of measurements, the logistic model computes the probability that they belong to either one of the categories. We wish to model the dependence between $X$, which consists of a set of variables $X = \lbrace X_1,X_2,X_3,... \rbrace $, which express the features, and $p(X) = Pr(Y \vert X)$, where $Y$ represents the classifier labels. Using the above logistic function, we can write:
+Based on \cite{kleinbaum2010logistic,logmodel1,statistics}: for a set of measurements, the logistic model computes the probability that they belong to either one of the categories. We wish to model the dependence between $X$, which consists of a set of variables $X = \lbrace X_1,X_2,X_3,... \rbrace $, which express the features, and $p(X) = Pr(Y \vert X)$, where $Y$ represents the classifier labels. Using the above logistic function, we can write:
 \begin{equation*}
 p(X) = \frac{1}{1+e^{-X}}
 \end{equation*}
@@ -227,7 +227,7 @@ All that is left now is to estimate the unknown quantities $\beta_0, \beta_1, \b
 l(\beta) = \prod_ip(X_i)[1 - p(X_i)]
 \end{equation*}
  
-Where the first term corresponds to cases that belong to one category, and the second to cases that belong to the other category. The estimations for $\beta_0, \beta_1, \beta_2...$ are chosen so that the above function is maximized. Solving the above equation entails the use of computationally intensive iterative methods \cite{logmodel}, and is outside the scope of this paper. Once discovered, the estimations are plugged back in the logit, and the model can be used for classification.
+Where the first term corresponds to cases that belong to one category, and the second to cases that belong to the other category. The estimations for $\beta_0, \beta_1, \beta_2...$ are chosen so that the above function is maximized. Solving the above equation entails the use of computationally intensive iterative methods \cite{logmodel1}, and is outside the scope of this paper. Once discovered, the estimations are plugged back in the logit, and the model can be used for classification.
  
 \subsection{Results}
 
@@ -245,7 +245,7 @@ We used the Scikit-learn \cite{scikit-learn} implementation for the logistic reg
 
 For the basic case, where only the Bluetooth RSSI measurement is used, the accuracy reaches 82\%. We then continue the tests with the use of multiple time windows. Again, in case of missing windows, we use imputation, both mean imputation and last observation carry forward. 
 
-Increasing the number of time windows used has little effect on the mean imputation parameter set, it peaking at 83\%, when two extra time windows were used. This value comes very close to the score obtained with basic set, and also introduces a high amount of computational overhead, from the algorithm (as we add more features, more values need to be estimated), as well as the database structure(as the chain structures need to be traversed). Overall, this choice of parameters brings little against the basic set.
+Increasing the number of time windows used has little effect on the mean imputation parameter set, it peaking at 83\%, when two extra time windows were used. This value comes very close to the score obtained with the basic set, and also introduces a high amount of computational overhead, from the algorithm (as we add more features, more values need to be estimated), as well as the database structure(as the chain structures need to be traversed). Overall, this choice of parameters brings little against the basic set.
 
 The same cannot be said by the variation that uses last observation carry forward. Increasing the number of time windows taken into consideration has a significant effect on the overall accuracy of the algorithm. Unfortunately, it is not a positive one. As we increase that number, the accuracy decreases dramatically. Even with one extra time window, the score we obtain is lower than even the basic case. When we move to two extra windows, the score drops to 74.2\%, to 72.6\% for three windows, and 71.5\% for four windows, and the trend continues. Clearly, this choice of parameters is not suitable for this particular algorithm. 
 
@@ -287,7 +287,7 @@ p(Y\vert X_1,X_2,X_3,..., X_n) = \frac{p(Y)\prod \limits_{i=1}^np(X_i \vert Y)}{
 
 This gives us the model. It computes the probabilities that a certain feature vector, representing an object, belongs to either category. While the probabilities calculated are not correct, the relation between them is valid. That is, if an object to be classified has a higher probability of belonging to class $A$ compared to the probability of belonging to class $B$, than that object probably belongs to class $A$. 
 
-The parameters are estimated through training, using maximum likelihood \cite{zhang2004optimality}. However, depending on the type of data we wish to classify, we need to assume a specific feature distribution, usually called \textit{event model} \cite{mccallum1998comparison}. For continuous data, the Gaussian distribution is usually used, while for discrete features Bernoulli and multinomial distributions are used \cite{mccallum1998comparison}.
+The parameters are estimated through training, using maximum likelihood \cite{zhang2004optimality} (which is outside the scope of this paper). However, depending on the type of data we wish to classify, we need to assume a specific feature distribution, usually called \textit{event model} \cite{mccallum1998comparison}. For continuous data, the Gaussian distribution is usually used, while for discrete features Bernoulli and multinomial distributions are used \cite{mccallum1998comparison}.
 
 \subsection{Results}
 
@@ -357,7 +357,7 @@ Taking into account the test score results obtained, we analysed the performance
 
 Naive Bayes' training also has an $O(n)$ complexity for $n$ features. For the other two algorithms, as we saw before, training is done iteratively, until the solutions converge, or a maximum number of iterations is reached. For these reasons, in order to analyse the performance, we monitored the execution time.
 
-Fig. \ref{pic:time1_tot} details the actual computation time or the time the program spent on the processor doing just mathematical operations, while Fig. \ref{pic:time2_tot} details a full execution including the time spent reading data from the disk. 
+Fig. \ref{pic:time1_tot} details the actual computation time or the time the program spent on the processor doing just mathematical operations, while Fig. \ref{pic:time2_tot} details a full execution including the time spent preparing the data. 
 
 One test case for an algorithm represents a loop with 30 iterations. In each iteration, the algorithm is trained once. For every algorithm, 1000 test cases have been executed and the results averaged, obtaining the numbers appearing in Fig. \ref{pic:time1_tot} and Fig. \ref{pic:time2_tot}. The measurements have been done with the \textit{time} command available on most UNIX/LINUX systems. 
 
