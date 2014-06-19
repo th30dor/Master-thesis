@@ -2,7 +2,7 @@
 
 The data used in the paper has been gathered over the course of three months, starting in early March and ending in late May. The data has been obtained with the help of three student volunteers. Each volunteer carried a phone, provided by the SensibleDTU project, the same project this thesis is a part of \cite{sensibledtu, Stopczynski}. The phones are Samsung Galaxy Nexus \cite{nexus} and are running the Android operating system \cite{android}.
 
-Each phone came with two apps. The first recorded regularly a multitude of information, such as Bluetooth RSSI, GPS traces, battery usage and cell tower information, and is a part of the SensibleDTU project \cite{Stopczynski}, while the second allowed the volunteers to manually name the person they are in physical proximity with, and was developed during this thesis. The second app provided the ground-truth information that confirmed the existence of physical proximity.
+Each phone came with two apps. The first recorded regularly a multitude of information, such as Bluetooth RSSI (see section \ref{sec:bt}), GPS traces, battery usage and cell tower information, and is a part of the SensibleDTU project \cite{Stopczynski}, while the second allowed the volunteers to manually name the person they are in physical proximity with, and was developed during this thesis. The second app provided the ground-truth information that confirmed the existence of physical proximity.
 
 This gave rise to two types of data. First, a continuous stream of regular measurements from the first app, and punctual messages from the second app. Below we will go into more detail about how exactly the two types of data look, how are they gathered and finally, how the two are combined to create a unitary set which serves as a basis for the machine learning algorithms.
 
@@ -10,6 +10,15 @@ One last thing to mention is that the volunteers were not chosen completely rand
 On the other hand, we needed to make sure that eventually, some volunteers are in each other's physical proximity. This was resolved by the fact that the volunteers had a course together. This ensured that at least once per week, usually two because of group work, the volunteers met.
 
 \section{Bluetooth}
+\label{sec:bt}
+
+We give a short overview of the Bluetooth technology, with an emphasis on the notions used in this thesis.    
+
+Bluetooth is a technology standard that specifies wireless data transfer over short distances. It uses the 2.4 GHz ISM (Industrial, Scientific, Medical) band and allows for both point-to-point connections, as well as point-to-multipoint \cite{bluet}. 
+
+Developed in 1994, by Ericsson, the standard is now maintained by the Bluetooth SIG (Special Interest Group), which consists of over 20 000 companies \cite{bloae}. Due to the relative low power consumption, low cost and low size of the devices that implements this standard, Bluetooth has a wide range of applications, from mobile phone to mobile phone communication, to connecting peripheral devices to a PC, just to name a few \cite{bluet}.
+
+Its this popularity that makes it suitable for use as a data gathering source and co-location indicator, as most of the mobile phones currently in use have a Bluetooth port. At its core, Bluetooth uses a radio signal, and the power behind it can be measured using a received signal strength indicator (RSSI, measured in dBm) \cite{sauter2010gsm}. This power can be an indicator for distance between devices \cite{vedran}, and it is this measurement that we will use in our study.  
 
 \section{FriendFinder app}
 

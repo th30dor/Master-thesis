@@ -110,7 +110,7 @@ We begin our testing with the most basic case. We use a single feature, the meas
 		\includegraphics[scale=0.6]{figures/ann_simple.png}
 	\end{center}
 	
-	\caption{Test accuracy for ANN when just the RSSI is used as a feature.}
+	\caption{Test accuracy for ANN when just the RSSI is used as a feature. The standard deviation is approximately $\sigma = 0.4$, regardless of the number of neurons used.}
 	\label{pic:ann_single}
 
 \end{figure}
@@ -128,7 +128,7 @@ A first approach used mean imputation. We replaced the missing data with the ave
 		\includegraphics[scale=0.6]{figures/ann_params2.png}
 	\end{center}
 	
-	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with mean imputation.}
+	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with mean imputation. The standard deviations are $\sigma=\lbrace 1.5,1.2,1.2,1.1 \rbrace $ for one extra time window, $\sigma=\lbrace 2.2,2.4,2.4,2.5 \rbrace $ for two and $\sigma=\lbrace 2.7,2.7,2.7,2.7 \rbrace $ for three}
 	\label{pic:ann_params1}
 
 \end{figure}
@@ -140,7 +140,7 @@ As we increase the number of time windows, for mean imputation, the accuracy inc
 		\includegraphics[scale=0.6]{figures/ann_params1.png}
 	\end{center}
 	
-	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with last observation carry forward imputation.}
+	\caption{Test accuracy for ANN when the RSSI for the current and previous time windows are used as features, with last observation carry forward imputation. The standard deviations are $\sigma=\lbrace 2,2.3,2.4,2.3 \rbrace $ for one extra time window, $\sigma=\lbrace 2.9,3,3,3.2 \rbrace $ for two and $\sigma=\lbrace 4.2,3.9,4.1,4.2 \rbrace $ for three}
 	\label{pic:ann_params2}
 
 \end{figure}
@@ -154,7 +154,7 @@ Taking into account the additional information provided by the chain that a wind
 		\includegraphics[scale=0.5]{figures/ann_chain.png}
 	\end{center}
 	
-	\caption{Test accuracy for ANN when the RSSI and the chain length are used as features.}
+	\caption{Test accuracy for ANN when the RSSI and the chain length are used as features. Standard deviations are $\sigma=\lbrace 0.6,0.7,0.7,0.7 \rbrace $}
 	\label{pic:ann_chain}
 
 \end{figure}
@@ -238,7 +238,7 @@ We used the Scikit-learn \cite{scikit-learn} implementation for the logistic reg
 		\includegraphics[scale=0.7]{figures/logic_tot.png}
 	\end{center}
 	
-	\caption{Testing results for logistic regression.}
+	\caption{Testing results for logistic regression. Standard deviation is $\sigma= 0.3 $ for basic, $\sigma= 0.5 $ for chain, $\sigma=\lbrace 1.4, 1.6, 1.9, 2 \rbrace $ for mean and  $\sigma=\lbrace 3.6, 3.7, 3.7, 4 \rbrace$ for LOCF}
 	\label{pic:logic_tot}
 
 \end{figure}
@@ -298,7 +298,7 @@ We used the Scikit-learn \cite{scikit-learn} implementation for the Naive Bayes 
 		\includegraphics[scale=0.7]{figures/naive_tot.png}
 	\end{center}
 	
-	\caption{Testing results for Naive Bayes.}
+	\caption{Testing results for Naive Bayes. Standard deviation is $\sigma= 0.4 $ for basic, $\sigma= 0.4 $ for chain, $\sigma=\lbrace 1.6, 2, 2.2 \rbrace $ for mean and  $\sigma=\lbrace 3.7, 3.8, 4.4 \rbrace$ for LOCF}
 	\label{pic:naive_tot}
 
 \end{figure}

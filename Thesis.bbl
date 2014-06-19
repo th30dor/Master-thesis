@@ -121,6 +121,23 @@ M.~B. Kj{\ae}rgaard and P.~Nurmi, ``Challenges for social sensing using wifi
 \bibitem{android}
 ``Android.'' \url{http://www.android.com/}, June 2014.
 
+\bibitem{bluet}
+R.~Shorey and B.~Miller, ``The bluetooth technology: merits and limitations,''
+  in {\em Personal Wireless Communications, 2000 IEEE International Conference
+  on}, pp.~80--84, 2000.
+
+\bibitem{bloae}
+``Bluetooth sig.'' \url{https://www.bluetooth.org/en-us}, June 2014.
+
+\bibitem{sauter2010gsm}
+M.~Sauter, {\em From GSM to LTE: an introduction to mobile networks and mobile
+  broadband}.
+\newblock John Wiley \& Sons, 2010.
+
+\bibitem{vedran}
+V.~{Sekara} and S.~{Lehmann}, ``{The Strength of Friendship Ties in Proximity
+  Sensor Data},'' {\em ArXiv e-prints}, Jan. 2014.
+
 \bibitem{jandroid}
 ``developer.android.com.'' \url{http://developer.android.com/}, June 2014.
 
@@ -140,10 +157,6 @@ M.~B. Kj{\ae}rgaard and P.~Nurmi, ``Challenges for social sensing using wifi
 
 \bibitem{funf}
 ``funf, the open sensing framework.'' \url{http://www.funf.org/}, June 2014.
-
-\bibitem{vedran}
-V.~{Sekara} and S.~{Lehmann}, ``{The Strength of Friendship Ties in Proximity
-  Sensor Data},'' {\em ArXiv e-prints}, Jan. 2014.
 
 \bibitem{kohavi1995study}
 R.~Kohavi {\em et~al.}, ``A study of cross-validation and bootstrap for

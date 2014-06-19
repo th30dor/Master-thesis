@@ -1,6 +1,6 @@
 \chapter{Introduction}
 
-\section{Motivation}
+\section{Motivation and related work}
 
 
 
@@ -14,8 +14,15 @@ Epidemiology \cite{human_sex}, personal health issues \cite{Madan}, group discov
 \end{figure} 
 
 There are a number of approaches to determining co-location: self-reported data, a more traditional approach, which is prone to cognitive bias, social desirability bias and halo error \cite{Wuchty08092009,gonyea}. A more recent approach involves the use of data provided by modern means of communication, namely mobile phones. This data can come from both the actual phone, in the form of GPS locations or bluetooth readings \cite{Stopczynski}, as well as from the phone company itself in the form of anonymous cell tower records \cite{Onnela01052007, hovel}. This has the advantage of being applicable almost anywhere, because of the high percentage of mobile phone penetration (95.5\% estimated by the International Telecommunication Union in May 2014). 
-However, there are approaches that yield better results, but come with financial, environmental or other types of additional cost: RFID tags \cite{catt}, audio-video recordings \cite{audiovideo}, on-body sensors \cite{onbody} and wifi signals \cite{wifi}, just to name a few. 
- 
+However, there are approaches that yield better results, but come with financial, environmental or other types of additional cost.
+
+In \cite{catt}, \textit{Barrat and Cattuto} use RFID tags as means to collect data. The tags are embedded into badges, that are worn by the study participants. Radio receivers are installed in the environment that save and pre-process the data sent by the tags. While the face-to-face proximity can be determined with high accuracy (99\%), the cost and effort of creating and distributing the badges, and the limitations imposed by the enclosed area where the receivers are installed make this method hard to use on a large scale.
+
+As a data source, in \cite{audiovideo}, \textit{Wyatt et. al} used audio-video recordings. The study participants wore an over-the-shoulder bag which contained a PDA and a multi-sensor board, which received information from a multitude of sensors located on the user, including a microphone.
+
+\textit{Sociometric} badges were used as means of collecting data by \textit{Olguin et al.} in \cite{onbody}. The badges are the size of a mobile phone, and record a high amount of information from a variety of sensors: common human daily activities, speech features, indoor user localization and face-to-face interaction time, in addition to Bluetooth detection and communication with receivers in the environment.
+
+In \cite{wifi}, \textit{ Kjærgaard and Nurmi} use the WiFi capabilities on smartphones. While being usable both indoors and outdoors, the authors present a number of challenges that have to be overcame before this method can be used for social discovery on a larger scale.   
  
 \section{Objective}
 
